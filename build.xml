@@ -2,38 +2,31 @@
 <project default = "all">
 
 	<target name="init">
-		<property name="jdocs.dir" value="docs"/>
-		<property name="bin.dir" value="bin"/>
-		<property name="src.dir" value="src"/>
-        <property name="lib.dir" value="/home/klittlepage/Documents/gatech/courses/cs7641/hw/hw2/lib" />
+        <property name="src.dir" value="src"/>
+        <property name="target.dir" value="target"/>
+        <property name="bin.dir" value="${target.dir}/classes"/>
+		<property name="jdocs.dir" value="${target.dir}/docs"/>
 	</target>
 
-	<target name="prepare" depends="init">
-		<mkdir dir="${bin.dir}"/>
-		<mkdir dir="${jdocs.dir}"/>
-	</target>
-
-	<target name = "compile" depends="prepare">
-		<mkdir dir="bin"/>
-		<javac includeantruntime="false" srcdir= "src" destdir = "bin">
+	<target name = "compile" depends="init">
+        <mkdir dir="${bin.dir}"/>
+		<javac includeantruntime="false" srcdir= "src" destdir = "${bin.dir}">
             <compilerarg value="-Xlint:unchecked" />
 		</javac>
 	</target>
 
 	<target name = "jar" depends = "compile">
-		<manifest file = "manifest.mf"/>
+		<manifest file = "${target.dir}/manifest.mf"/>
 		<delete file = "ABAGAIL.jar"/>
-		<jar basedir = "bin/" destfile = "ABAGAIL.jar" manifest = "manifest.mf"/>
-        <copy file="ABAGAIL.jar" todir="${lib.dir}" />
+		<jar basedir = "${bin.dir}" destfile = "${target.dir}/ABAGAIL.jar" manifest = "${target.dir}/manifest.mf"/>
 	</target>
 
 	<target name="clean" depends="init">
-		<delete dir="${bin.dir}" />
-		<delete dir="${jdocs.dir}" />
-        <delete file = "ABAGAIL.jar"/>
+		<delete dir="${target.dir}" />
 	</target>
 
-	<target name="javadoc" depends="prepare">
+	<target name="javadoc" depends="init">
+        <mkdir dir="${jdocs.dir}"/>
 		<javadoc sourcepath="${src.dir}" destdir="${jdocs.dir}" />
 	</target>
 
