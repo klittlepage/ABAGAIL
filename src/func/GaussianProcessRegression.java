@@ -3,15 +3,11 @@ package func;
 import dist.AbstractConditionalDistribution;
 import dist.Distribution;
 import dist.UnivariateGaussian;
-import shared.DataSet;
-import shared.Instance;
-import util.linalg.CholeskyFactorization;
-import util.linalg.DenseVector;
-import util.linalg.Matrix;
-import util.linalg.RectangularMatrix;
-import util.linalg.Vector;
 import func.svm.Kernel;
 import func.svm.LinearKernel;
+import shared.DataSet;
+import shared.Instance;
+import util.linalg.*;
 
 /**
  * A gaussian process regression
@@ -58,6 +54,7 @@ public class GaussianProcessRegression extends AbstractConditionalDistribution i
     /**
      * @see func.FunctionApproximater#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet set) {
         // make the kernel matrix
         c = new RectangularMatrix(set.size(), set.size());
@@ -82,6 +79,7 @@ public class GaussianProcessRegression extends AbstractConditionalDistribution i
     /**
      * @see func.FunctionApproximater#value(shared.Instance)
      */
+    @Override
     public Instance value(Instance i) {
         return distributionFor(i).mode();
     }
@@ -89,6 +87,7 @@ public class GaussianProcessRegression extends AbstractConditionalDistribution i
     /**
      * @see dist.ConditionalDistribution#distributionFor(shared.Instance)
      */
+    @Override
     public Distribution distributionFor(Instance instance) {
         Vector k = new DenseVector(c.m());
         for (int i = 0; i < k.size(); i++) {

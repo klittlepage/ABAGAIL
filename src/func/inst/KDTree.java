@@ -1,12 +1,13 @@
 package func.inst;
-import java.io.Serializable;
 
+import shared.DataSet;
+import shared.DistanceMeasure;
+import shared.EuclideanDistance;
+import shared.Instance;
+
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
-
-import shared.*;
-import shared.DataSet;
-import shared.Instance;
 
 /**
  * A KDTree implementation
@@ -56,8 +57,6 @@ public class KDTree implements Serializable {
      * Build a kd tree from the given parallel arrays
      * of keys and data
      * @param keys the array of keys
-     * @param data the array of data
-     * @param distance the distance measure
      */
     public KDTree(DataSet keys) {
         this(keys, new EuclideanDistance());
@@ -95,11 +94,11 @@ public class KDTree implements Serializable {
      * @param splitterIndex the splitter's index
      * @return the new splitter index
      */
-    private int partition(Comparable[] comparables, int start, int end, 
-            int splitterIndex) {
+    private <T extends Comparable<? super T>> int partition(T[] comparables,
+            int start, int end, int splitterIndex) {
         swap(comparables, splitterIndex, end - 1);
         splitterIndex = end - 1;
-        Comparable splitter = comparables[splitterIndex];
+        final T splitter = comparables[splitterIndex];
         int i = start - 1;
         for (int j =  start; j < end - 1; j++) {
             if (splitter.compareTo(comparables[j]) > 0) {

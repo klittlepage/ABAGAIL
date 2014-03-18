@@ -1,8 +1,8 @@
 package dist.test;
 
+import dist.DiscreteDistribution;
 import shared.DataSet;
 import shared.Instance;
-import dist.DiscreteDistribution;
 
 /**
  * A multinomial distribution test
@@ -10,10 +10,7 @@ import dist.DiscreteDistribution;
  * @version 1.0
  */
 public class DiscreteDistributionTest {
-    /**
-     * Test main
-     * @param args
-     */
+
     public static void main(String[] args) {
         double[] ps = new double[] {
             .1, .3, .2, .4

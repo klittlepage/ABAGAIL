@@ -1,7 +1,6 @@
 package opt.ga;
 
 import dist.Distribution;
-
 import shared.Instance;
 
 /**
@@ -12,8 +11,8 @@ import shared.Instance;
 public class SingleCrossOver implements CrossoverFunction {
 
     /**
-     * @see opt.CrossOverFunction#mate(opt.OptimizationData, opt.OptimizationData)
      */
+    @Override
     public Instance mate(Instance a, Instance b) {
         double[] newData = new double[a.size()];
         int point = Distribution.random.nextInt(newData.length + 1);

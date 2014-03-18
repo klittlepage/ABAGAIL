@@ -37,12 +37,13 @@ public class PolicyIteration implements PolicyLearner {
     /**
      * @see shared.Trainer#train()
      */
+    @Override
     public double train() {
         int stateCount = process.getStateCount();
         int actionCount = process.getActionCount();
         // perform value iteration with the policy
         double[] values = new double[stateCount];
-        boolean valuesChanged = false;
+        boolean valuesChanged;
         do {
             valuesChanged = false;
             // loop through all the states
@@ -91,6 +92,7 @@ public class PolicyIteration implements PolicyLearner {
     /**
      * @see rl.PolicyLearner#getPolicy()
      */
+    @Override
     public Policy getPolicy() {
         return policy;
     }

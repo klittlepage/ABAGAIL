@@ -1,8 +1,8 @@
 package dist.hmm;
 
+import dist.ConditionalDistribution;
 import shared.DataSet;
 import shared.Instance;
-import dist.ConditionalDistribution;
 
 /**
  * A wrapper class that turns a regular conditional distribution
@@ -27,6 +27,7 @@ public class ConditionalStateDistributionWrapper implements StateDistribution {
     /**
      * @see dist.hmm.StateDistribution#p(int, shared.Instance)
      */
+    @Override
     public double p(int nextState, Instance observ) {
         return cd.distributionFor(observ).p(new Instance(nextState));
     }
@@ -34,6 +35,7 @@ public class ConditionalStateDistributionWrapper implements StateDistribution {
     /**
      * @see dist.hmm.StateDistribution#generateRandomState(shared.Instance)
      */
+    @Override
     public int generateRandomState(Instance o) {
         return cd.sample(o).getDiscrete();
     }
@@ -41,6 +43,7 @@ public class ConditionalStateDistributionWrapper implements StateDistribution {
     /**
      * @see dist.hmm.StateDistribution#mostLikelyState(shared.Instance)
      */
+    @Override
     public int mostLikelyState(Instance o) {
         return cd.mode(o).getDiscrete();
     }
@@ -48,6 +51,7 @@ public class ConditionalStateDistributionWrapper implements StateDistribution {
     /**
      * @see dist.hmm.StateDistribution#estimate(double[][], shared.DataSet)
      */
+    @Override
     public void estimate(double[][] expectations, DataSet sequence) {
         Instance[] instances = new Instance[expectations.length * expectations[0].length];
         for (int i = 0; i < expectations.length; i++) {

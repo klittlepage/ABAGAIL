@@ -12,7 +12,7 @@ public class Node {
     /**
      * The list of edges
      */
-    private List edges;
+    private List<Edge> edges;
     
     /**
      * Generic label stored on the node
@@ -23,12 +23,11 @@ public class Node {
      * Make a new node
      */
     public Node() {
-        edges = new ArrayList();
+        edges = new ArrayList<Edge>();
     }
     
     /**
      * Make a new node
-     * @param data the data
      */
     public Node(int label) {
         this();
@@ -73,7 +72,7 @@ public class Node {
      * @return the edge
      */
     public Edge getEdge(int i) {
-        return (Edge) edges.get(i);
+        return edges.get(i);
     }
     
     
@@ -120,7 +119,7 @@ public class Node {
      * Get the list of edges
      * @return the edges
      */
-    public List getEdges() {
+    public List<Edge> getEdges() {
         return edges;
     }
 
@@ -128,7 +127,7 @@ public class Node {
      * Set the list of edges
      * @param list the list of edges
      */
-    public void setEdges(List list) {
+    public void setEdges(List<Edge> list) {
         edges = list;
     }
     

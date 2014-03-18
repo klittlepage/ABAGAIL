@@ -1,17 +1,11 @@
 package dist;
 
 
-import util.linalg.DenseVector;
-import util.graph.DFSTree;
-import util.graph.Graph;
-import util.graph.KruskalsMST;
-import util.graph.Node;
-import util.graph.Tree;
-import util.graph.WeightedEdge;
-
 import shared.DataSet;
 import shared.DataSetDescription;
 import shared.Instance;
+import util.graph.*;
+import util.linalg.DenseVector;
 
 
 /**
@@ -64,15 +58,15 @@ public class DiscreteDependencyTree extends AbstractDistribution {
     }
 
     /**
-     * @see dist.Distribution#probabilityOf(shared.Instance)
      */
+    @Override
     public double p(Instance i) {
         return root.probabilityOf(i);
     }
 
     /**
-     * @see dist.Distribution#generateRandom(shared.Instance)
      */
+    @Override
     public Instance sample(Instance ignored) {
         Instance i = new Instance(new DenseVector(dt.getNodeCount()));
         root.generateRandom(i);
@@ -80,8 +74,8 @@ public class DiscreteDependencyTree extends AbstractDistribution {
     }
 
     /**
-     * @see dist.Distribution#generateMostLikely(shared.Instance)
      */
+    @Override
     public Instance mode(Instance ignored) {
         Instance i = new Instance(new DenseVector(dt.getNodeCount()));
         root.generateMostLikely(i);
@@ -91,6 +85,7 @@ public class DiscreteDependencyTree extends AbstractDistribution {
     /**
      * @see dist.Distribution#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet observations) {
         if (description != null) {
             observations.setDescription(description);
@@ -110,7 +105,6 @@ public class DiscreteDependencyTree extends AbstractDistribution {
     /**
      * Build the directed mst from the mutual information
      * and ranges
-     * @param ranges the ranges
      * @param mutualI the mutual information values
      * @return the directed mst
      */
@@ -130,14 +124,11 @@ public class DiscreteDependencyTree extends AbstractDistribution {
         // find the mst
         g = new KruskalsMST().transform(g);
         // direct it
-        Tree rg = (Tree) new DFSTree().transform(g);
-        return rg;
+        return (Tree) new DFSTree().transform(g);
     }
 
     /**
      * Calculate the mutual information from the data
-     * @param ranges the ranges of the data
-     * @param data the data itself
      * @return the mutual informations
      */
     private double[][] calculateMutualInformation(DataSet observations) {
@@ -196,10 +187,10 @@ public class DiscreteDependencyTree extends AbstractDistribution {
                 // and the entropy of x_j
                 mutualI[i][j] += entropies[j];
                 // subtract the joint entropy
-                for (int k = 0; k < joints.length; k++) {
-                    for (int l = 0; l < joints[k].length; l++) {
-                        if (joints[k][l] != 0) {
-                            mutualI[i][j] += joints[k][l] * Math.log(joints[k][l]);
+                for (final double[] joint : joints) {
+                    for (final double aJoint : joint) {
+                        if (aJoint != 0) {
+                            mutualI[i][j] += aJoint * Math.log(aJoint);
                         }
                     }
                 }

@@ -28,8 +28,8 @@ public class QuickpropUpdateRule extends WeightUpdateRule {
     }
 
     /**
-     * @see nn.backprop.BackPropagationUpdateRule#update(nn.backprop.BackPropagationLink)
      */
+    @Override
     public void update(BackPropagationLink link) {
         if (link.getLastError() == 0) {
             // the first run

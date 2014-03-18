@@ -1,13 +1,13 @@
 package func;
 
+import dist.AbstractConditionalDistribution;
+import dist.DiscreteDistribution;
+import dist.Distribution;
 import shared.DataSet;
 import shared.DistanceMeasure;
 import shared.EuclideanDistance;
 import shared.Instance;
 import util.linalg.DenseVector;
-import dist.*;
-import dist.Distribution;
-import dist.DiscreteDistribution;
 
 /**
  * A K means clusterer
@@ -33,7 +33,6 @@ public class KMeansClusterer extends AbstractConditionalDistribution implements 
     /**
      * Make a new k means clustere
      * @param k the k value
-     * @param distanceMeasure the distance measure
      */
     public KMeansClusterer(int k) {
         this.k = k;
@@ -47,9 +46,7 @@ public class KMeansClusterer extends AbstractConditionalDistribution implements 
         this(2);
     }
 
-    /**
-     * @see func.Classifier#classDistribution(shared.Instance)
-     */
+    @Override
     public Distribution distributionFor(Instance instance) {
         double[] distribution = new double[k];
         for (int i = 0; i < k; i++) {
@@ -57,8 +54,8 @@ public class KMeansClusterer extends AbstractConditionalDistribution implements 
                 1/distanceMeasure.value(instance, clusterCenters[i]);   
         }
         double sum = 0;
-        for (int i = 0; i < distribution.length; i++) {
-            sum += distribution[i];
+        for (final double aDistribution : distribution) {
+            sum += aDistribution;
         }
         if (Double.isInfinite(sum)) {
             sum = 0;
@@ -80,6 +77,7 @@ public class KMeansClusterer extends AbstractConditionalDistribution implements 
     /**
      * @see func.FunctionApproximater#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet set) {
         clusterCenters = new Instance[k];
         int[] assignments = new int[set.size()];
@@ -92,7 +90,7 @@ public class KMeansClusterer extends AbstractConditionalDistribution implements 
             assignments[pick] = 1;
             clusterCenters[i] = (Instance) set.get(pick).copy();
         }
-        boolean changed = false;
+        boolean changed;
         // the main loop
         do {
             changed = false;
@@ -137,6 +135,7 @@ public class KMeansClusterer extends AbstractConditionalDistribution implements 
     /**
      * @see func.FunctionApproximater#value(shared.Instance)
      */
+    @Override
     public Instance value(Instance data) {
         return distributionFor(data).mode();
     }
@@ -154,8 +153,8 @@ public class KMeansClusterer extends AbstractConditionalDistribution implements 
      */
     public String toString() {
         String result = "k = " + k + "\n";
-        for (int i = 0; i < clusterCenters.length; i++) {
-            result += clusterCenters[i].toString() + "\n";
+        for (final Instance clusterCenter : clusterCenters) {
+            result += clusterCenter.toString() + "\n";
         }
         return result;
     }

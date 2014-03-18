@@ -12,7 +12,7 @@ import java.io.IOException;
  * will then go to the next line.
  * 
  * @author Jesse Rosalia <https://github.com/theJenix>
- * @date 2013-03-07
+ * Last edited: 2013-03-07
  */
 public interface Writer {
 
@@ -32,8 +32,7 @@ public interface Writer {
     
     /**
      * Write a datapoint to a record.
-     * 
-     * @param str
+     *
      * @throws IOException
      */
     public void write(String str) throws IOException;

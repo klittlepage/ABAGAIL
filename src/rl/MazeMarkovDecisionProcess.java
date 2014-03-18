@@ -1,9 +1,9 @@
 package rl;
 
+import dist.Distribution;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
-
-import dist.Distribution;
 
 /**
  * A markov decision process representing a maze
@@ -130,6 +130,7 @@ public class MazeMarkovDecisionProcess implements MarkovDecisionProcess {
     /**
      * @see rl.MarkovDecisionProcess#getStateCount()
      */
+    @Override
     public int getStateCount() {
         return maze.length * maze[0].length;
     }
@@ -137,6 +138,7 @@ public class MazeMarkovDecisionProcess implements MarkovDecisionProcess {
     /**
      * @see rl.MarkovDecisionProcess#getActionCount()
      */
+    @Override
     public int getActionCount() {
         return ACTIONS;
     }
@@ -144,6 +146,7 @@ public class MazeMarkovDecisionProcess implements MarkovDecisionProcess {
     /**
      * @see rl.MarkovDecisionProcess#reward(int, int)
      */
+    @Override
     public double reward(int state, int action) {
         if (state == goal) {
             return REWARD;
@@ -155,6 +158,7 @@ public class MazeMarkovDecisionProcess implements MarkovDecisionProcess {
     /**
      * @see rl.MarkovDecisionProcess#transitionProbability(int, int, int)
      */
+    @Override
     public double transitionProbability(int i, int j, int a) {
         int startX = xFor(i), startY = yFor(i);
         int endX = xFor(j), endY = yFor(j);
@@ -203,11 +207,12 @@ public class MazeMarkovDecisionProcess implements MarkovDecisionProcess {
     /**
      * @see rl.MarkovDecisionProcess#sampleState(int, int)
      */
+    @Override
     public int sampleState(int i, int a) {
         if (Distribution.random.nextDouble() < motionFailureProbability) {
         	return i;
         }
-        int nextState = -1;
+        int nextState;
         switch(a) {
         	case MOVE_UP:
         		nextState = stateFor(xFor(i), yFor(i) - 1);
@@ -233,6 +238,7 @@ public class MazeMarkovDecisionProcess implements MarkovDecisionProcess {
     /**
      * @see rl.MarkovDecisionProcess#sampleInitialState()
      */
+    @Override
     public int sampleInitialState() {
         return initial;
     }
@@ -240,6 +246,7 @@ public class MazeMarkovDecisionProcess implements MarkovDecisionProcess {
     /**
      * @see rl.MarkovDecisionProcess#isTerminalState(int)
      */
+    @Override
     public boolean isTerminalState(int state) {
         return state == goal;
     }
@@ -247,7 +254,7 @@ public class MazeMarkovDecisionProcess implements MarkovDecisionProcess {
     /**
      * Load a maze from a text file
      * @param fileName the file to read from
-     * @throws an exception when there's an error reading
+     * @throws Exception exception when there's an error reading
      * the file
      */
     public static MazeMarkovDecisionProcess load(String fileName) throws Exception {
@@ -255,7 +262,7 @@ public class MazeMarkovDecisionProcess implements MarkovDecisionProcess {
         int height = 1;
         String line = br.readLine();
         int width = line.length();
-        while((line = br.readLine()) != null) {
+        while(null != br.readLine()) {
             height++;
         }
         br.close();

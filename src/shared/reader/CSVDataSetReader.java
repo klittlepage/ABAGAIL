@@ -1,18 +1,18 @@
 package shared.reader;
 
+import shared.DataSet;
+import shared.DataSetDescription;
+import shared.Instance;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-
-import shared.DataSet;
-import shared.DataSetDescription;
-import shared.Instance;
 /**
  * Class to read in data from a CSV file without a specified label
  * @author Tim Swihart <https://github.com/chronoslynx>
- * @date 2013-03-05
+ * Last edited: 2013-03-05
  */
 public class CSVDataSetReader extends DataSetReader {
 
@@ -37,7 +37,7 @@ public class CSVDataSetReader extends DataSetReader {
             data.add(instance);
         }
         br.close();
-        Instance[] instances = (Instance[]) data.toArray(new Instance[0]);
+        Instance[] instances = data.toArray(new Instance[data.size()]);
         DataSet set = new DataSet(instances);
         set.setDescription(new DataSetDescription(set));
         return set;

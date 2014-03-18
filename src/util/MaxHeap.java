@@ -61,7 +61,6 @@ public class MaxHeap {
     
     /**
      * The heapify sub routine
-     * @param items the items
      * @param i the index to heapify
      */
     private void heapify(int i) {

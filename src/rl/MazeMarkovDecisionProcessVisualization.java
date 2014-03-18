@@ -1,7 +1,6 @@
 package rl;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 /**
  * A class for visualizing a maze markov decision process

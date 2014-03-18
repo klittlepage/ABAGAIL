@@ -9,8 +9,8 @@ package shared;
 public class EuclideanDistance extends AbstractDistanceMeasure {
 
     /**
-     * @see memory.DistanceMeasure#distanceSquared(shared.Instance, shared.Instance)
      */
+    @Override
     public double value(Instance va, Instance vb) {
         double sum = 0;
         for (int i = 0; i < va.size(); i++) {

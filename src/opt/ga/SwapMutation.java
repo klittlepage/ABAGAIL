@@ -11,8 +11,8 @@ import shared.Instance;
 public class SwapMutation implements MutationFunction {
 
     /**
-     * @see opt.ga.MutationFunction#mutate(opt.OptimizationData)
      */
+    @Override
     public void mutate(Instance d) {
         int i = Distribution.random.nextInt(d.size());
         int j = Distribution.random.nextInt(d.size());

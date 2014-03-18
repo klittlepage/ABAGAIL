@@ -1,14 +1,13 @@
 package dist;
 
-import java.io.Serializable;
-import java.util.Arrays;
-
 import shared.Copyable;
 import shared.DataSet;
 import shared.Instance;
-
 import util.ABAGAILArrays;
 import util.linalg.Vector;
+
+import java.io.Serializable;
+import java.util.Arrays;
 
 
 /**
@@ -42,10 +41,6 @@ public class DiscreteDistribution extends AbstractDistribution implements Serial
     /**
      * Make a new single discrete output
      * that models the given probabilities
-     * @param probabilities array of probabilitites
-     * such that the probabilities of output i
-     * is probabilitites[i]
-     * @param m the continuity parameter
      */
      public DiscreteDistribution(Vector vector) {
          this.m = vector.size();
@@ -64,7 +59,6 @@ public class DiscreteDistribution extends AbstractDistribution implements Serial
      * @param probabilities array of probabilitites
      * such that the probabilities of output i
      * is probabilitites[i]
-     * @param m the continuity parameter
      */
     public DiscreteDistribution(double[] probabilities) {
         this.probabilities = probabilities;
@@ -96,6 +90,7 @@ public class DiscreteDistribution extends AbstractDistribution implements Serial
      * @param i the discrete value to get the probability of
      * @return the probability of i
      */
+    @Override
     public double p(Instance i) {
         return probabilities[i.getDiscrete()];
     }
@@ -104,6 +99,7 @@ public class DiscreteDistribution extends AbstractDistribution implements Serial
      * Generate a discrete value consistent with the distribution
      * @return the discrete value
      */
+    @Override
     public Instance sample(Instance ignored) {
         if (cummulatives == null) {
             calculateCummulatives();
@@ -127,6 +123,7 @@ public class DiscreteDistribution extends AbstractDistribution implements Serial
      * Generate the most likely value
      * @return the value
      */
+    @Override
     public Instance mode(Instance ignored) {
         int argMax = 0;
         for (int i = 1; i < probabilities.length; i++) {
@@ -141,6 +138,7 @@ public class DiscreteDistribution extends AbstractDistribution implements Serial
      * Reestimage based on the given data set
      * @param observations the observations
      */
+    @Override
     public void estimate(DataSet observations) {
         double weightSum = 0;
         for (int i = 0; i < probabilities.length; i++) {
@@ -209,11 +207,10 @@ public class DiscreteDistribution extends AbstractDistribution implements Serial
     /**
      * @see shared.Copyable#copy()
      */
+    @Override
     public Copyable copy() {
         double[] copyProbabilities = new double[probabilities.length];
-        for (int i = 0; i < copyProbabilities.length; i++) {
-            copyProbabilities[i] = probabilities[i];
-        }
+        System.arraycopy(probabilities, 0, copyProbabilities, 0, copyProbabilities.length);
         DiscreteDistribution copy = new DiscreteDistribution(copyProbabilities);
         copy.setM(m);
         copy.setPrior(prior);

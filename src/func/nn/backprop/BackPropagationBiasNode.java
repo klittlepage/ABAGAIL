@@ -21,13 +21,13 @@ public class BackPropagationBiasNode extends BackPropagationNode {
     }
 
     /**
-     * @see nn.FeedForwardNode#feedforward()
      */    
+    @Override
     public void feedforward() { }
     
     /**
-     * @see nn.backprop.BackPropagationNode#backpropagate()
      */
+    @Override
     public void backpropagate() { }
     
 }

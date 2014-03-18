@@ -1,15 +1,22 @@
 package opt.test;
 
-import dist.*;
-import opt.*;
-import opt.example.*;
-import opt.ga.*;
-import shared.*;
-import func.nn.backprop.*;
+import func.nn.backprop.BackPropagationNetwork;
+import func.nn.backprop.BackPropagationNetworkFactory;
+import opt.OptimizationAlgorithm;
+import opt.RandomizedHillClimbing;
+import opt.SimulatedAnnealing;
+import opt.example.NeuralNetworkOptimizationProblem;
+import opt.ga.StandardGeneticAlgorithm;
+import shared.DataSet;
+import shared.ErrorMeasure;
+import shared.Instance;
+import shared.SumOfSquaresError;
 
-import java.util.*;
-import java.io.*;
-import java.text.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.text.DecimalFormat;
+import java.util.Scanner;
 
 /**
  * Implementation of randomized hill climbing, simulated annealing, and genetic algorithm to
@@ -61,14 +68,15 @@ public class AbaloneTest {
 
             double predicted, actual;
             start = System.nanoTime();
-            for(int j = 0; j < instances.length; j++) {
-                networks[i].setInputValues(instances[j].getData());
+            for (final Instance instance : instances) {
+                networks[i].setInputValues(instance.getData());
                 networks[i].run();
 
-                predicted = Double.parseDouble(instances[j].getLabel().toString());
+                predicted = Double.parseDouble(instance.getLabel().toString());
                 actual = Double.parseDouble(networks[i].getOutputValues().toString());
 
-                double trash = Math.abs(predicted - actual) < 0.5 ? correct++ : incorrect++;
+                double trash = Math.abs(predicted - actual) < 0.5 ? correct++ :
+                        incorrect++;
 
             }
             end = System.nanoTime();
@@ -91,11 +99,11 @@ public class AbaloneTest {
             oa.train();
 
             double error = 0;
-            for(int j = 0; j < instances.length; j++) {
-                network.setInputValues(instances[j].getData());
+            for (final Instance instance : instances) {
+                network.setInputValues(instance.getData());
                 network.run();
 
-                Instance output = instances[j].getLabel(), example = new Instance(network.getOutputValues());
+                Instance output = instance.getLabel(), example = new Instance(network.getOutputValues());
                 example.setLabel(new Instance(Double.parseDouble(network.getOutputValues().toString())));
                 error += measure.value(output, example);
             }

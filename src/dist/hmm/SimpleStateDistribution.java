@@ -1,7 +1,9 @@
 package dist.hmm;
 
-import dist.*;
-import shared.*;
+import dist.DiscreteDistribution;
+import shared.Copyable;
+import shared.DataSet;
+import shared.Instance;
 
 /**
  * A simple state functin doesn't look at the input
@@ -23,15 +25,15 @@ public class SimpleStateDistribution extends DiscreteDistribution
     
 
     /**
-     * @see hmm.distribution.StateDistribution#probabilityOfState(int, hmm.observation.Observation)
      */
+    @Override
     public double p(int nextState, Instance observation) {
         return p(new Instance(nextState));
     }
 
     /**
-     * @see hmm.distribution.StateDistribution#match(double[][], hmm.observation.Observation[])
      */ 
+    @Override
     public void estimate(double[][] expectations, DataSet observations) {
         double sum = 0;
         double[] probabilities = getProbabilities();
@@ -39,10 +41,10 @@ public class SimpleStateDistribution extends DiscreteDistribution
            probabilities[i] = 0;
         }
         // sum up expectations
-        for (int t = 0; t < expectations.length; t++) {
-            for (int j = 0; j < expectations[t].length; j++) {
-                probabilities[j] += expectations[t][j];
-                sum += expectations[t][j];
+        for (final double[] expectation : expectations) {
+            for (int j = 0; j < expectation.length; j++) {
+                probabilities[j] += expectation[j];
+                sum += expectation[j];
             }
         }
         // probability = expected / sum of expected
@@ -52,19 +54,20 @@ public class SimpleStateDistribution extends DiscreteDistribution
     }
 
     /**
-     * @see hmm.distribution.TransitionDistribution#generateState(hmm.observation.Observation)
      */
+    @Override
     public int generateRandomState(Instance o) {
         return sample(o).getDiscrete();
     }
 
     /**
-     * @see hmm.distribution.StateDistribution#generateMostLikely(hmm.observation.Observation)
      */
+    @Override
     public int mostLikelyState(Instance o) {
         return mode(o).getDiscrete();
     }
     
+    @Override
     public Copyable copy() {
         DiscreteDistribution copy = (DiscreteDistribution) super.copy();
         SimpleStateDistribution sscopy = new SimpleStateDistribution(copy.getProbabilities());

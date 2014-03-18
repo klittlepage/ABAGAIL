@@ -13,12 +13,12 @@ public class Neuron implements Serializable {
 	/**
 	 * The list of in links
 	 */
-	private List inLinks;
+	private List<Link> inLinks;
 	
 	/**
 	 * The list of out links
 	 */
-	private List outLinks;
+	private List<Link> outLinks;
 
 	/**
 	 * The value of the node
@@ -29,8 +29,8 @@ public class Neuron implements Serializable {
 	 * Make a new node
 	 */
 	public Neuron() {
-		inLinks = new ArrayList();
-		outLinks = new ArrayList();
+		inLinks = new ArrayList<Link>();
+		outLinks = new ArrayList<Link>();
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class Neuron implements Serializable {
 	 * Get the input links
 	 * @return the list of links
 	 */
-	public List getInLinks() {
+	public List<Link> getInLinks() {
 		return inLinks;
 	}
 	
@@ -71,7 +71,7 @@ public class Neuron implements Serializable {
 	 * @return the link
 	 */
 	public Link getInLink(int i) {
-		return (Link) inLinks.get(i);
+		return inLinks.get(i);
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class Neuron implements Serializable {
 	 * @return the link
 	 */
 	public Link getOutLink(int i) {
-		return (Link) outLinks.get(i);
+		return outLinks.get(i);
 	}
 	
 	/**
@@ -157,14 +157,14 @@ public class Neuron implements Serializable {
 	 */
 	public void disconnect(Neuron node) {
 		for (int i = 0; i < outLinks.size(); i++) {
-			Link link = (Link) outLinks.get(i);
+			Link link = outLinks.get(i);
 			if (link.getInNode() == this) {
 				outLinks.remove(link);
 				break;
 			}
 		}
 		for (int i = 0; i < node.getInLinks().size(); i++) {
-			Link link = (Link) node.getInLinks().get(i);
+			Link link = node.getInLinks().get(i);
 			if (link.getInNode() == this) {
 				node.removeInLink(link);
 				break;

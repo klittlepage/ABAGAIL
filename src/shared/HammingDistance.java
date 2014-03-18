@@ -10,8 +10,8 @@ public class HammingDistance extends AbstractDistanceMeasure {
 
 
     /**
-     * @see memory.DistanceMeasure#distanceSquared(double[], double[])
      */
+    @Override
     public double value(Instance va, Instance vb) {
         double sum = 0;
         for (int i = 0; i < va.size(); i++) {

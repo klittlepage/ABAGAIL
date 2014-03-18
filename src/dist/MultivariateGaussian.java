@@ -3,11 +3,7 @@ package dist;
 import shared.Copyable;
 import shared.DataSet;
 import shared.Instance;
-import util.linalg.CholeskyFactorization;
-import util.linalg.DenseVector;
-import util.linalg.Matrix;
-import util.linalg.RectangularMatrix;
-import util.linalg.Vector;
+import util.linalg.*;
 
 /**
  * A multivariate gaussian distribution
@@ -91,14 +87,13 @@ public class MultivariateGaussian extends AbstractDistribution  implements Copya
     }
 
     /**
-     * @see dist.Distribution#probabilityOf(shared.Instance)
      */
+    @Override
     public double p(Instance i) {
         Vector d = i.getData();
         Vector dMinusMean = d.minus(mean);
-        double p = 1/Math.sqrt(Math.pow(2*Math.PI, mean.size())* determinant)
+        return 1/Math.sqrt(Math.pow(2*Math.PI, mean.size())* determinant)
             * Math.exp(-.5 * dMinusMean.dotProduct(decomposition.solve(dMinusMean)));
-        return p;
     }
     
     /**
@@ -106,17 +101,17 @@ public class MultivariateGaussian extends AbstractDistribution  implements Copya
      * @param i the instance
      * @return the log likelihood
      */
+    @Override
     public double logp(Instance i) {
         Vector d = i.getData();
         Vector dMinusMean = d.minus(mean);
-        double p = Math.log(1/Math.sqrt(Math.pow(2*Math.PI, mean.size())* determinant))
+        return Math.log(1/Math.sqrt(Math.pow(2*Math.PI, mean.size())* determinant))
                 - .5 * dMinusMean.dotProduct(decomposition.solve(dMinusMean));
-        return p;
     }
 
     /**
-     * @see dist.Distribution#generateRandom(shared.Instance)
      */
+    @Override
     public Instance sample(Instance ignored) {
         Vector r = new DenseVector(mean.size());
         for (int i = 0; i < r.size(); i++) {
@@ -126,8 +121,8 @@ public class MultivariateGaussian extends AbstractDistribution  implements Copya
     }
 
     /**
-     * @see dist.Distribution#generateMostLikely(shared.Instance)
      */
+    @Override
     public Instance mode(Instance ignored) {
         return new Instance((Vector) mean.copy());
     }
@@ -135,6 +130,7 @@ public class MultivariateGaussian extends AbstractDistribution  implements Copya
     /**
      * @see dist.Distribution#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet observations) {
         double weightSum = 0;
         // calculate mean
@@ -246,6 +242,7 @@ public class MultivariateGaussian extends AbstractDistribution  implements Copya
         debug = b;
     }
     
+    @Override
     public Copyable copy() {
         return new MultivariateGaussian((Vector) mean.copy(), 
                     (Matrix) covarianceMatrix.copy(), floor);

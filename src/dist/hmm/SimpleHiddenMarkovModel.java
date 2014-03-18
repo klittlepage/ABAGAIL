@@ -1,7 +1,7 @@
 package dist.hmm;
 
-import shared.Instance;
 import dist.DiscreteDistribution;
+import shared.Instance;
 
 /**
  * A hidden markov model implementation that does not
@@ -97,8 +97,6 @@ public class SimpleHiddenMarkovModel extends ModularHiddenMarkovModel {
      * transition observation data
      * @param i the start state
      * @param expectations the expected transitions [t][j] for time t to state j
-     * @param sequence the transition observatiosn
-     * @param sequence the observation sequence
      */
     public void estimateTransitionDistribution(
             int i, double[][] expectations) {

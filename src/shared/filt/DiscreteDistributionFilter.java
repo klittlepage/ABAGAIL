@@ -1,8 +1,8 @@
 package shared.filt;
 
 import dist.ConditionalDistribution;
-import dist.Distribution;
 import dist.DiscreteDistribution;
+import dist.Distribution;
 import shared.DataSet;
 import shared.Instance;
 import util.linalg.DenseVector;
@@ -30,6 +30,7 @@ public class DiscreteDistributionFilter implements DataSetFilter {
     /**
      * @see shared.filt.DataSetFilter#filter(shared.DataSet)
      */
+    @Override
     public void filter(DataSet dataSet) {
         for (int i = 0; i < dataSet.size(); i++) {
             Instance instance = dataSet.get(i);

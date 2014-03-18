@@ -1,13 +1,9 @@
 package func.test;
 
+import func.DecisionTreeClassifier;
+import func.dtree.*;
 import shared.DataSet;
 import shared.Instance;
-import func.DecisionTreeClassifier;
-import func.dtree.ChiSquarePruningCriteria;
-import func.dtree.GINISplitEvaluator;
-import func.dtree.InformationGainSplitEvaluator;
-import func.dtree.PruningCriteria;
-import func.dtree.SplitEvaluator;
 
 /**
  * Test the class
@@ -44,8 +40,8 @@ public class DecisionTreeTest {
         DecisionTreeClassifier dt = new DecisionTreeClassifier(igse, null, true);
         dt.estimate(set);
         System.out.println(dt);
-        for (int i = 0; i < tests.length; i++) {
-            System.out.println(dt.value(tests[i]));
+        for (final Instance test : tests) {
+            System.out.println(dt.value(test));
         }
     }
 }

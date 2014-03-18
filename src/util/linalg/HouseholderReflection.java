@@ -72,7 +72,6 @@ public class HouseholderReflection {
      * matrix of the given matrix begining at row i, column j.
      * Sets A(i:m, j:n) = P * A(i:m, j:n) 
      * @param m the matrix to apply the reflection to
-     * @param i the starting row
      * @param ib the ending row
      * @param ja the starting column
      * @param jb the ending column
@@ -107,7 +106,7 @@ public class HouseholderReflection {
      * Sets A(i:m, j:n) = A(i:m, j:n) * P 
      * @param m the matrix to apply the reflection to
      * @param ia the starting row
-     * @parma ib the ending row
+     * @param ib the ending row
      * @param ja the starting column
      * @param jb the ending column
      */

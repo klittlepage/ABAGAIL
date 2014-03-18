@@ -1,15 +1,15 @@
 package func;
 
-import dist.*;
-import dist.Distribution;
+import dist.AbstractConditionalDistribution;
 import dist.DiscreteDistribution;
-import shared.DataSet;
-import shared.Instance;
-import shared.filt.DiscreteToBinaryFilter;
+import dist.Distribution;
+import func.svm.Kernel;
 import func.svm.LinearKernel;
 import func.svm.SequentialMinimalOptimization;
 import func.svm.SupportVectorMachine;
-import func.svm.Kernel;
+import shared.DataSet;
+import shared.Instance;
+import shared.filt.DiscreteToBinaryFilter;
 
 /**
  * 
@@ -54,6 +54,7 @@ public class SimpleSupportVectorMachineClassifier extends AbstractConditionalDis
     /**
      * @see func.FunctionApproximater#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet set) {
         DiscreteToBinaryFilter dtbf = new DiscreteToBinaryFilter();
         dtbf.filter(set);
@@ -66,13 +67,14 @@ public class SimpleSupportVectorMachineClassifier extends AbstractConditionalDis
     /**
      * @see func.FunctionApproximater#value(shared.Instance)
      */
+    @Override
     public Instance value(Instance i) {
         return svm.value(i);
     }
     
     /**
-     * @see func.Classifier#classDistribution(shared.Instance)
      */
+    @Override
     public Distribution distributionFor(Instance data) {
         Instance v = value(data);
         double[] p = new double[2];

@@ -10,8 +10,8 @@ import func.nn.LayeredNetwork;
 public class FeedForwardNetwork extends LayeredNetwork {
 
     /**
-     * @see nn.Network#run()
      */
+    @Override
     public void run() {
         for (int i = 0; i < getHiddenLayerCount(); i++) {
             ((FeedForwardLayer) getHiddenLayer(i)).feedforward();

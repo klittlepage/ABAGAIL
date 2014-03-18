@@ -10,8 +10,8 @@ import shared.Instance;
 public class LinearKernel extends Kernel {
 
     /**
-     * @see svm.Kernel#value(shared.Instance, shared.Instance)
      */
+    @Override
     public double value(Instance a, Instance b) {
         return a.getData().dotProduct(b.getData());
     }

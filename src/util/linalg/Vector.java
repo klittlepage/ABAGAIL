@@ -1,9 +1,9 @@
 package util.linalg;
 
+import shared.Copyable;
+
 import java.io.Serializable;
 import java.text.DecimalFormat;
-
-import shared.Copyable;
 
 /**
  * A class representing a vector with linear algebra
@@ -62,7 +62,7 @@ public abstract class Vector implements Serializable, Copyable {
     /**
      * Remove a column from the middle of the vector and return a new vector
      * 
-     * @param i
+     * @param inx The index to remove at
      */
     public Vector remove(int inx) {
         double[] data = new double[size()];
@@ -262,7 +262,8 @@ public abstract class Vector implements Serializable, Copyable {
 	 * Make a copy of this vector
 	 * @return the copy
 	 */
-	public Copyable copy() {
+	@Override
+    public Copyable copy() {
 		double[] copy = new double[size()];
 		for (int i = 0; i < copy.length; i++) {
 			copy[i] = get(i);
@@ -274,6 +275,12 @@ public abstract class Vector implements Serializable, Copyable {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(Object o) {
+       if(o == this) {
+           return true;
+       }
+       if(!(o instanceof Vector)) {
+           return false;
+       }
        Vector v = (Vector) o;
        if (v.size() != size()) {
            return false;

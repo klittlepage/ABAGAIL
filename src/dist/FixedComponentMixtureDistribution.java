@@ -43,8 +43,8 @@ public class FixedComponentMixtureDistribution extends AbstractDistribution impl
     }
     
     /**
-     * @see hmm.distribution.OutputDistribution#match(double[], hmm.observation.Observation[])
      */
+    @Override
     public void estimate(DataSet observations) {
         // the mixing weights
     	    double[] mixingWeights = componentDistribution.getProbabilities();
@@ -88,8 +88,8 @@ public class FixedComponentMixtureDistribution extends AbstractDistribution impl
     }
 
     /**
-     * @see hmm.distribution.OutputDistribution#generateRandom(hmm.observation.Observation)
      */
+    @Override
     public Instance sample(Instance input) {
         int picked = componentDistribution.sample(input).getDiscrete();
         return components[picked].sample(input);
@@ -99,14 +99,15 @@ public class FixedComponentMixtureDistribution extends AbstractDistribution impl
     /**
      * @see dist.Distribution#mode(shared.Instance)
      */
+    @Override
     public Instance mode(Instance input) {
         int picked = componentDistribution.mode(input).getDiscrete();
         return components[picked].mode(input);
     }
 
     /**
-     * @see hmm.distribution.OutputDistribution#probabilityOfObservation(hmm.observation.Observation)
      */
+    @Override
     public double p(Instance observation) {
         double probability = 0;
         for (int i = 0; i < components.length; i++) {
@@ -121,15 +122,15 @@ public class FixedComponentMixtureDistribution extends AbstractDistribution impl
      */
     public String toString() {
         String result = componentDistribution.toString() + "\n";
-        for (int i = 0; i < components.length; i++) {
-            result += components[i] + "\n";
+        for (final Distribution component : components) {
+            result += component + "\n";
         }
         return result + "\n";
     }
     
     /**
      * Get the component distribution
-     * @return
+     *
      */
     public DiscreteDistribution getComponentDistribution() {
         return componentDistribution;
@@ -146,6 +147,7 @@ public class FixedComponentMixtureDistribution extends AbstractDistribution impl
     /**
      * @see shared.Copyable#copy()
      */
+    @Override
     public Copyable copy() {
         return new FixedComponentMixtureDistribution(components, 
             ((DiscreteDistribution) componentDistribution.copy()));

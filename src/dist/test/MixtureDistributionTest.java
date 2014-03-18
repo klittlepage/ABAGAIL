@@ -1,13 +1,13 @@
 package dist.test;
 
-import util.linalg.DenseVector;
-import util.linalg.RectangularMatrix;
+import dist.DiscreteDistribution;
 import dist.Distribution;
 import dist.MixtureDistribution;
-import dist.DiscreteDistribution;
 import dist.MultivariateGaussian;
 import shared.DataSet;
 import shared.Instance;
+import util.linalg.DenseVector;
+import util.linalg.RectangularMatrix;
 
 /**
  * Testing

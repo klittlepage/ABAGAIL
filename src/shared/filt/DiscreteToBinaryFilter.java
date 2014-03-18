@@ -16,6 +16,7 @@ public class DiscreteToBinaryFilter implements DataSetFilter {
     /**
      * @see shared.filt.DataSetFilter#filter(shared.DataSet)
      */
+    @Override
     public void filter(DataSet dataSet) {
         if (dataSet.getDescription() == null) {
             dataSet.setDescription(new DataSetDescription(dataSet));

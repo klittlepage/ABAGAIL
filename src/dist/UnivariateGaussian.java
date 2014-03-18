@@ -45,6 +45,7 @@ public class UnivariateGaussian extends AbstractDistribution implements Copyable
     /**
      * @see dist.Distribution#p(shared.Instance)
      */
+    @Override
     public double p(Instance i) {
         double dMinusMean = i.getContinuous() - mean;
         return 1/(SQRTTWOPI*sigma) * Math.exp(
@@ -54,6 +55,7 @@ public class UnivariateGaussian extends AbstractDistribution implements Copyable
     /**
      * @see dist.Distribution#logp(shared.Instance)
      */
+    @Override
     public double logp(Instance i) {
         double dMinusMean = i.getContinuous() - mean;
         return Math.log(1/(SQRTTWOPI*sigma))
@@ -63,6 +65,7 @@ public class UnivariateGaussian extends AbstractDistribution implements Copyable
     /**
      * @see dist.Distribution#sample(shared.Instance)
      */
+    @Override
     public Instance sample(Instance i) {
         return new Instance(random.nextGaussian() * sigma + mean);
     }
@@ -70,6 +73,7 @@ public class UnivariateGaussian extends AbstractDistribution implements Copyable
     /**
      * @see dist.Distribution#mode(shared.Instance)
      */
+    @Override
     public Instance mode(Instance i) {
         return new Instance(mean);
     }
@@ -77,6 +81,7 @@ public class UnivariateGaussian extends AbstractDistribution implements Copyable
     /**
      * @see dist.Distribution#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet set) {
         mean = 0;
         for (int i = 0; i < set.size(); i++) {
@@ -126,6 +131,7 @@ public class UnivariateGaussian extends AbstractDistribution implements Copyable
     /**
      * @see shared.Copyable#copy()
      */
+    @Override
     public Copyable copy() {
         return new UnivariateGaussian(mean, sigma);
     }

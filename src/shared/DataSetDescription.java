@@ -1,11 +1,11 @@
 package shared;
 
-import java.io.Serializable;
-import java.util.Arrays;
-
 import util.ABAGAILArrays;
 import util.linalg.DenseVector;
 import util.linalg.Vector;
+
+import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * A data set description contains information
@@ -74,10 +74,8 @@ public class DataSetDescription implements Serializable {
     /**
      * Make a new data set description
      * @param types the types of the data
-     * @param set the data set
      * @param min the minimum value
      * @param max the maximum value
-     * @param labelDescription the description of the label
      */
     public DataSetDescription(AttributeType[] types, Vector min, Vector max) {
          this(types, min, max, null);       

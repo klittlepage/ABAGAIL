@@ -1,11 +1,10 @@
 package func.test;
 
-import java.util.Arrays;
-
+import func.inst.KDTree;
 import shared.DataSet;
 import shared.Instance;
 
-import func.inst.KDTree;
+import java.util.Arrays;
 
 /**
  * A knn test

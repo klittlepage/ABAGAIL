@@ -1,12 +1,12 @@
 package func.test;
 
+import func.dtree.ChiSquarePruningCriteria;
+import func.dtree.DecisionTreeSplit;
+import func.dtree.DecisionTreeSplitStatistics;
+import func.dtree.StandardDecisionTreeSplit;
 import shared.DataSet;
 import shared.DataSetDescription;
 import shared.Instance;
-import func.dtree.DecisionTreeSplit;
-import func.dtree.DecisionTreeSplitStatistics;
-import func.dtree.ChiSquarePruningCriteria;
-import func.dtree.StandardDecisionTreeSplit;
 
 /**
  * Test the class

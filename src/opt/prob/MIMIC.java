@@ -16,7 +16,8 @@ import util.ABAGAILArrays;
  * @author Andrew Guillory gtg008g@mail.gatech.edu
  * @version 1.0
  */
-public class MIMIC extends OptimizationAlgorithm {
+public class MIMIC extends
+        OptimizationAlgorithm<ProbabilisticOptimizationProblem> {
     /**
      * The current distribution
      */
@@ -35,10 +36,6 @@ public class MIMIC extends OptimizationAlgorithm {
     /**
      * Make a new mimic
      * @param samples the number of samples to take each iteration
-     * @param random how many of those samples should be completely random
-     * @param theta the starting theta
-     * @param increment the increment
-     * @param stoppingCount the minimum number of good samples needed to continue
      * @param op the problem
      */
     public MIMIC(int samples, int tokeep, ProbabilisticOptimizationProblem op) {
@@ -56,6 +53,7 @@ public class MIMIC extends OptimizationAlgorithm {
     /**
      * @see opt.OptimizationAlgorithm#getOptimal()
      */
+    @Override
     public Instance getOptimal() {
         OptimizationProblem op = getOptimizationProblem();
         Instance[] data = new Instance[samples];
@@ -77,8 +75,9 @@ public class MIMIC extends OptimizationAlgorithm {
     /**
      * @see shared.Trainer#train()
      */
+    @Override
     public double train() {
-        ProbabilisticOptimizationProblem op = (ProbabilisticOptimizationProblem) getOptimizationProblem();
+        ProbabilisticOptimizationProblem op = getOptimizationProblem();
         Instance[] data = new Instance[samples];
         for (int i = 0; i < data.length; i++) {
             data[i] = distribution.sample(null);

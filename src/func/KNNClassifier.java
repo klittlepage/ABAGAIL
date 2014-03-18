@@ -1,13 +1,10 @@
 package func;
 
-import dist.*;
-import dist.Distribution;
+import dist.AbstractConditionalDistribution;
 import dist.DiscreteDistribution;
+import dist.Distribution;
 import func.inst.KDTree;
 import shared.*;
-import shared.DataSet;
-import shared.DataSetDescription;
-import shared.Instance;
 
 /**
  * A knn classifier
@@ -55,7 +52,6 @@ public class KNNClassifier extends AbstractConditionalDistribution implements Fu
     
     /**
      * Build a new classifier
-     * @param examples the examples
      * @param k the k value
      * @param measure the distance measure
      */
@@ -66,7 +62,6 @@ public class KNNClassifier extends AbstractConditionalDistribution implements Fu
     
     /**
      * Build a new classifier
-     * @param examples the examples
      * @param k the k value
      * @param weight the weight
      * @param measure the distance measure
@@ -78,7 +73,6 @@ public class KNNClassifier extends AbstractConditionalDistribution implements Fu
     
     /**
      * Build a new classifier
-     * @param examples the examples
      * @param k the k value
      * @param weight the weight
      * @param measure the distance measure
@@ -97,6 +91,7 @@ public class KNNClassifier extends AbstractConditionalDistribution implements Fu
      * Estimate from data
      * @param examples the examples
      */
+    @Override
     public void estimate(DataSet examples) {
         if (examples.getDescription() == null) {
             examples.setDescription(new DataSetDescription(examples));
@@ -110,6 +105,7 @@ public class KNNClassifier extends AbstractConditionalDistribution implements Fu
      * @param data the data
      * @return the class distribution
      */
+    @Override
     public Distribution distributionFor(Instance data) {
         double[] distribution = new double[classRange];
         Object[] results;
@@ -118,19 +114,20 @@ public class KNNClassifier extends AbstractConditionalDistribution implements Fu
         } else {
             results = tree.knn(data, k);
         }
-        for (int i = 0; i < results.length; i++) {
-            Instance neighbor = (Instance) results[i];
+        for (final Object result : results) {
+            Instance neighbor = (Instance) result;
             if (weightByDistance) {
                 distribution[neighbor.getLabel().getDiscrete()] +=
-                     neighbor.getWeight()/distanceMeasure.value(data, neighbor);
+                        neighbor.getWeight() /
+                                distanceMeasure.value(data, neighbor);
             } else {
                 distribution[neighbor.getLabel().getDiscrete()] +=
-                     neighbor.getWeight();
+                        neighbor.getWeight();
             }
         }
         double sum = 0;
-        for (int i = 0; i < distribution.length; i++) {
-            sum += distribution[i];
+        for (final double aDistribution : distribution) {
+            sum += aDistribution;
         }
         if (Double.isInfinite(sum)) {
             sum = 0;
@@ -154,6 +151,7 @@ public class KNNClassifier extends AbstractConditionalDistribution implements Fu
      * @param data the data to get the classification for
      * @return the classification
      */
+    @Override
     public Instance value(Instance data) {
         return distributionFor(data).mode();
     }

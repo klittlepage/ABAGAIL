@@ -35,15 +35,15 @@ public class DiscretePermutationDistribution extends AbstractDistribution {
     }
 
     /**
-     * @see dist.Distribution#probabilityOf(shared.Instance)
      */
+    @Override
     public double p(Instance i) {
         return p;
     }
 
     /**
-     * @see dist.Distribution#generateRandom(shared.Instance)
      */
+    @Override
     public Instance sample(Instance ignored) {
         double[] d  = ABAGAILArrays.dindices(n);
         ABAGAILArrays.permute(d);
@@ -51,8 +51,8 @@ public class DiscretePermutationDistribution extends AbstractDistribution {
     }
 
     /**
-     * @see dist.Distribution#generateMostLikely(shared.Instance)
      */
+    @Override
     public Instance mode(Instance ignored) {
         return sample(ignored);
     }
@@ -60,7 +60,7 @@ public class DiscretePermutationDistribution extends AbstractDistribution {
     /**
      * @see dist.Distribution#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet observations) {
-        return;
     }
 }

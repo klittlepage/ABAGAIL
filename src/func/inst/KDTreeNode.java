@@ -1,12 +1,13 @@
 package func.inst;
-import java.io.Serializable;
 
 import shared.Instance;
+
+import java.io.Serializable;
 
 /**
  * A node in a KDTree
  */
-public class KDTreeNode implements Serializable, Comparable {
+public class KDTreeNode implements Serializable, Comparable<KDTreeNode> {
     /**
      * The key corresponding to this node
      */
@@ -30,7 +31,6 @@ public class KDTreeNode implements Serializable, Comparable {
     /**
      * Create a new KDTreeNode
      * @param key the key for the node
-     * @param data the the data
      */
     public KDTreeNode(Instance key) {
         this.instance = key;
@@ -103,9 +103,10 @@ public class KDTreeNode implements Serializable, Comparable {
     /**
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-    public int compareTo(Object o) {
+    @Override
+    public int compareTo(KDTreeNode o) {
         double value = getSplitValue();
-        double otherValue = ((KDTreeNode) o).getInstance().getContinuous(dimension);
+        double otherValue = o.getInstance().getContinuous(dimension);
         if (value < otherValue) {
             return -1;
         } else if (value > otherValue) {
@@ -114,4 +115,6 @@ public class KDTreeNode implements Serializable, Comparable {
             return 0;
         }
     }
+
+
 }

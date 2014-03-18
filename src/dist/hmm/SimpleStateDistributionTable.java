@@ -1,7 +1,10 @@
 package dist.hmm;
 
-import dist.*;
-import shared.*;
+import dist.DiscreteDistribution;
+import dist.DiscreteDistributionTable;
+import shared.Copyable;
+import shared.DataSet;
+import shared.Instance;
 
 /**
  * A look up table distribution for transitions
@@ -22,30 +25,30 @@ public class SimpleStateDistributionTable extends DiscreteDistributionTable
     
     /**
      * Make a new look up table of transition probabilities
-     * @param distributions
+     *
      */
     public SimpleStateDistributionTable(DiscreteDistribution[] distributions) {
     	    super(distributions);
     }
 
     /**
-     * @see hmm.distribution.TransitionDistribution#probabilityOfState(int, hmm.observation.Observation)
      */
+    @Override
     public double p(int nextState, Instance o) {
         Instance instance = new Instance(o.getData(), new Instance(nextState));
         return p(instance);
     }
 
     /**
-     * @see hmm.distribution.TransitionDistribution#generateState(hmm.observation.Observation)
      */
+    @Override
     public int generateRandomState(Instance o) {
         return sample(o).getDiscrete();
     }
 
     /**
-     * @see hmm.distribution.TransitionDistribution#match(double[][], hmm.observation.Observation[])
      */
+    @Override
     public void estimate(double[][] expectations, DataSet observations) {
         double[][] matrix = getProbabilityMatrix();
         double[] sums = new double[getInputRange()];
@@ -75,16 +78,16 @@ public class SimpleStateDistributionTable extends DiscreteDistributionTable
     }
 
     /**
-     * @see hmm.distribution.StateDistribution#generateMostLikely(hmm.observation.Observation)
      */
+    @Override
     public int mostLikelyState(Instance o) {
         return mode(o).getDiscrete();
     }
     
+    @Override
     public Copyable copy() {
         DiscreteDistributionTable copy = (DiscreteDistributionTable) super.copy();
-        DiscreteDistributionTable sscopy = new SimpleStateDistributionTable(copy.getDistributions());
-        return sscopy;
+        return new SimpleStateDistributionTable(copy.getDistributions());
     }
 
 }

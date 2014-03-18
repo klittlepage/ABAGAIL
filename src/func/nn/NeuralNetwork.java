@@ -2,10 +2,10 @@
 
 package func.nn;
 
+import util.linalg.Vector;
+
 import java.io.Serializable;
 import java.util.List;
-
-import util.linalg.Vector;
 
 /**
  * An abstract class representing a network

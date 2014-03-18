@@ -16,6 +16,7 @@ public class LabelFilter implements ReversibleFilter {
     /**
      * @see shared.filt.DataSetFilter#filter(shared.DataSet)
      */
+    @Override
     public void filter(DataSet dataSet) {
         filter.filter(dataSet.getLabelDataSet());
     }
@@ -23,6 +24,7 @@ public class LabelFilter implements ReversibleFilter {
     /**
      * @see shared.filt.ReversibleFilter#reverse(shared.DataSet)
      */
+    @Override
     public void reverse(DataSet set) {
         ((ReversibleFilter) filter).reverse(set.getLabelDataSet());
     }

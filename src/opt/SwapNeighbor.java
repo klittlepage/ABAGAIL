@@ -1,7 +1,6 @@
 package opt;
 
 import dist.Distribution;
-
 import shared.Instance;
 
 /**
@@ -12,8 +11,8 @@ import shared.Instance;
 public class SwapNeighbor implements NeighborFunction {
     
     /**
-     * @see opt.ga.MutationFunction#mutate(opt.OptimizationData)
      */
+    @Override
     public Instance neighbor(Instance d) {
         Instance cod = (Instance) d.copy();
         int i = Distribution.random.nextInt(cod.getData().size());

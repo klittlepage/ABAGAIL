@@ -29,8 +29,7 @@ public class VarianceCounter {
     
     /**
      * Count from the left...this captures the biggest components first. 
-     * 
-     * @param varianceToKeep
+     *
      * @return The number of components to keep (from the left)
      */
     public int countLeft(double varianceToKeep) {
@@ -56,8 +55,7 @@ public class VarianceCounter {
     
     /**
      * Count from the right...this captures the smallest components first. 
-     * 
-     * @param varianceToKeep
+     *
      * @return The number of components to keep (from the right)
      */
     public int countRight(double varianceToKeep) {

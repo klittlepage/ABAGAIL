@@ -1,8 +1,9 @@
 package func.nn;
-import java.util.ArrayList;
-import java.util.List;
 
 import util.linalg.Vector;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -25,31 +26,33 @@ public abstract class LayeredNetwork extends NeuralNetwork {
 	/**
 	 * The list of middle layers
 	 */
-	private List hiddenLayers;
+	private List<Layer> hiddenLayers;
     
     /**
      * The cached list of links
      */
-    private List links = null;
+    private List<Link> links = null;
 	
 	/**
 	 * Make a new layered network
 	 */
 	public LayeredNetwork() {
-		hiddenLayers = new ArrayList();
+		hiddenLayers = new ArrayList<Layer>();
 	}
 
 	/**	
- 	 * @see Network#getOutputValues()
+ 	 * @see LayeredNetwork#getOutputValues()
  	 */
-	public Vector getOutputValues() {
+	@Override
+    public Vector getOutputValues() {
 		return outputLayer.getActivations();
 	}
 	
 	/**
-	 * @see Network#setInputValues(double[])
+	 * @see LayeredNetwork#setInputValues(Vector)
 	 */
-	public void setInputValues(Vector values) {
+	@Override
+    public void setInputValues(Vector values) {
 		inputLayer.setActivations(values);
 	}
     
@@ -123,7 +126,7 @@ public abstract class LayeredNetwork extends NeuralNetwork {
 	 * @return the layer
 	 */
 	public Layer getHiddenLayer(int i) {
-		return (Layer) hiddenLayers.get(i);
+		return hiddenLayers.get(i);
 	}
 	
 	/**
@@ -177,13 +180,14 @@ public abstract class LayeredNetwork extends NeuralNetwork {
 	}
     
     /**
-     * @see nn.NeuralNetwork#getLinks()
+     * @see LayeredNetwork#getLinks()
      */
-    public List getLinks() {
+    @Override
+    public List<Link> getLinks() {
        if (links != null) {
            return links;
        }
-       links = new ArrayList();
+       links = new ArrayList<Link>();
        links.addAll(inputLayer.getLinks());
        for (int i = 0; i < getHiddenLayerCount(); i++) {
            links.addAll(getHiddenLayer(i).getLinks()); 

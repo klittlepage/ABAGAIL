@@ -9,9 +9,9 @@ package func.nn.activation;
 public class LogisticSigmoid extends DifferentiableActivationFunction {
 
     /**
-     * @see nn.function.ActivationFunction#activation(double)
      */
-	public double value(double value) {
+	@Override
+    public double value(double value) {
         double enx = Math.exp(-value);
         if (enx == Double.POSITIVE_INFINITY) {
             return 0;
@@ -21,8 +21,8 @@ public class LogisticSigmoid extends DifferentiableActivationFunction {
 	}
 
 	/**
-	 * @see nn.function.DifferentiableActivationFunction#derivative(double)
-	 */
+     */
+    @Override
     public double derivative(double value) {
         double logistic = value(value);
         return logistic * (1 - logistic);

@@ -1,19 +1,13 @@
 package dist.test;
 
-import java.util.Random;
-
-import dist.Distribution;
 import dist.DiscreteDistributionTable;
-
+import dist.Distribution;
+import dist.hmm.*;
 import shared.ConvergenceTrainer;
 import shared.DataSet;
 import shared.Instance;
 
-import dist.hmm.HiddenMarkovModelReestimator;
-import dist.hmm.ForwardBackwardProbabilityCalculator;
-import dist.hmm.ModularHiddenMarkovModel;
-import dist.hmm.SimpleStateDistributionTable;
-import dist.hmm.StateDistribution;
+import java.util.Random;
 
 /**
  * A test class for testing long term dependencies

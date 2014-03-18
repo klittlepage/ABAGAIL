@@ -21,8 +21,8 @@ public class ChiSquarePruningCriteria extends PruningCriteria {
     }
 
     /**
-     * @see dtrees.PruningCriteria#shouldPrune(dtrees.DecisionTreeSplitStatistics)
      */
+    @Override
     public boolean shouldPrune(DecisionTreeSplitStatistics stats) {
         // the degrees of freedom
         int dof = (stats.getBranchCount() - 1)
@@ -47,11 +47,7 @@ public class ChiSquarePruningCriteria extends PruningCriteria {
         // the chi square value
         double chisquare = CHI_SQUARE_TABLE[5*(dof - 1) + confidence]; 
         // if the deviance is big enough, don't prune
-        if (deviance > chisquare) {
-            return false;
-        } else {
-            return true;
-        } 
+        return deviance <= chisquare;
     }
     
     /**

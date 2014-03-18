@@ -1,8 +1,8 @@
 package opt.example;
 
-import util.linalg.Vector;
 import opt.EvaluationFunction;
 import shared.Instance;
+import util.linalg.Vector;
 
 /**
  * A continuous peaks function
@@ -24,8 +24,8 @@ public class ContinuousPeaksEvaluationFunction implements EvaluationFunction {
     }
 
     /**
-     * @see opt.EvaluationFunction#value(opt.OptimizationData)
      */
+    @Override
     public double value(Instance d) {
         Vector data = d.getData();
         int max0 = 0;

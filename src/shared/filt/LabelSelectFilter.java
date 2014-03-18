@@ -30,8 +30,8 @@ public class LabelSelectFilter implements DataSetFilter {
     /**
      * @see shared.filt.DataSetFilter#filter(shared.DataSet)
      */
+    @Override
     public void filter(DataSet dataSet) {
-        int dataCount = dataSet.get(0).size() - labelIndex;
         for (int i = 0; i < dataSet.size(); i++) {
             Instance instance = dataSet.get(i);
             Vector input = 

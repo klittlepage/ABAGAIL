@@ -1,9 +1,9 @@
 package func.nn.backprop;
 
+import func.nn.NetworkTrainer;
 import shared.DataSet;
 import shared.GradientErrorMeasure;
 import shared.Instance;
-import func.nn.NetworkTrainer;
 
 /**
  * A standard batch back propagation trainer
@@ -32,8 +32,8 @@ public class BatchBackPropagationTrainer extends NetworkTrainer {
     }
 
     /**
-     * @see nn.Trainer#train()
      */
+    @Override
     public double train() {
         BackPropagationNetwork network =
             (BackPropagationNetwork) getNetwork();

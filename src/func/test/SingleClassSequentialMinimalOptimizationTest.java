@@ -2,16 +2,11 @@ package func.test;
 
 import dist.Distribution;
 import dist.MultivariateGaussian;
+import func.svm.*;
 import shared.DataSet;
 import shared.Instance;
 import util.linalg.DenseVector;
 import util.linalg.RectangularMatrix;
-import func.svm.LinearKernel;
-import func.svm.PolynomialKernel;
-import func.svm.RBFKernel;
-import func.svm.SigmoidKernel;
-import func.svm.SingleClassSequentialMinimalOptimization;
-import func.svm.SingleClassSupportVectorMachine;
 
 /**
  * A test class
@@ -38,8 +33,8 @@ public class SingleClassSequentialMinimalOptimizationTest {
             }
         }
         double avgP = 0;
-        for (int i = 0; i < instances.length; i++) {
-            avgP += mga.p(instances[i]);
+        for (final Instance instance1 : instances) {
+            avgP += mga.p(instance1);
         }
         System.out.println("Average p : " + avgP / instances.length);
         PolynomialKernel pk = new PolynomialKernel(2, true);
@@ -56,10 +51,9 @@ public class SingleClassSequentialMinimalOptimizationTest {
         System.out.println("Num svs " + svm.getSupportVectors().size());
         instances = svm.getSupportVectors().getInstances();
         avgP = 0;
-        for (int i = 0; i < instances.length; i++) {
-            avgP += mga.p(instances[i]);
+        for (final Instance instance : instances) {
+            avgP += mga.p(instance);
         }
         System.out.println("SV Average p: " + avgP / instances.length);
-        return;
     }
 }

@@ -48,8 +48,8 @@ public class SigmoidKernel extends Kernel {
 
 
     /**
-     * @see svm.Kernel#value(svm.SupportVectorMachineData, svm.SupportVectorMachineData)
      */
+    @Override
     public double value(Instance a, Instance b) {
         return tanh(dotProductWeight * a.getData().dotProduct(b.getData()) + additiveConstant);
     }

@@ -1,8 +1,8 @@
 package opt.example;
 
-import util.linalg.Vector;
 import opt.EvaluationFunction;
 import shared.Instance;
+import util.linalg.Vector;
 
 /**
  * A checker board evaluation function
@@ -49,8 +49,8 @@ public class KnapsackEvaluationFunction implements EvaluationFunction {
     }
 
     /**
-     * @see opt.EvaluationFunction#value(opt.OptimizationData)
      */
+    @Override
     public double value(Instance d) {
         Vector data = d.getData();
         double volume = 0;

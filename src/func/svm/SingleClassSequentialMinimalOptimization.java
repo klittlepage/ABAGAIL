@@ -1,9 +1,9 @@
 package func.svm;
 
-import util.ABAGAILArrays;
 import shared.DataSet;
 import shared.Instance;
 import shared.Trainer;
+import util.ABAGAILArrays;
 
 /**
  * An implementation of the SMO algorithm.
@@ -112,6 +112,7 @@ public class SingleClassSequentialMinimalOptimization implements Trainer {
     /**
      * @see shared.Trainer#train()
      */
+    @Override
     public double train() {
         // number of alpha values changed this iteration
         int numChanged = 0;
@@ -159,8 +160,8 @@ public class SingleClassSequentialMinimalOptimization implements Trainer {
      */
     public SingleClassSupportVectorMachine getSupportVectorMachine() {
         int supportVectorCount = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] != 0) {
+        for (final double anA : a) {
+            if (anA != 0) {
                 supportVectorCount++;
             }
         }
@@ -190,7 +191,6 @@ public class SingleClassSequentialMinimalOptimization implements Trainer {
   
     /**
      * Examine an example
-     * @param i the index of the example to examine
      * @return true if the example was changed
      */
     private final boolean examine(int j) {

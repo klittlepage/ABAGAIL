@@ -25,30 +25,30 @@ public class PrecalculatedDistribution extends AbstractDistribution implements C
     }
 
     /**
-     * @see hmm.distribution.OutputDistribution#generateRandom(hmm.observation.Observation)
      */
+    @Override
     public Instance sample(Instance input) {
         return null;
     }
 
     /**
-     * @see hmm.distribution.OutputDistribution#generateMostLikely(hmm.observation.Observation)
      */
+    @Override
     public Instance mode(Instance input) {
         return null;
     }
 
     /**
-     * @see hmm.distribution.OutputDistribution#probabilityOfObservation(hmm.observation.Observation)
      */
+    @Override
     public double p(Instance inst) {
         return inst.getContinuous(i);
     }
     
 
     /**
-     * @see dist.Distribution#logLikelihood(shared.Instance)
      */
+    @Override
     public double logp(Instance i) {
         return Math.log(p(i));
     }
@@ -56,6 +56,7 @@ public class PrecalculatedDistribution extends AbstractDistribution implements C
     /**
      * @see dist.Distribution#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet observations) { }
     
     /**
@@ -68,6 +69,7 @@ public class PrecalculatedDistribution extends AbstractDistribution implements C
     /**
      * @see shared.Copyable#copy()
      */
+    @Override
     public Copyable copy() {
         return this;
     }

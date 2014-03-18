@@ -63,9 +63,6 @@ public class ABAGAILArrays {
     
     /**
      * Print out an array
-     * @param array the array to print
-     * @param digits the number of digits after
-     * the decimal place to use
      */
     public static String toString(double[] array) {
         return toString(array, 7);
@@ -74,8 +71,6 @@ public class ABAGAILArrays {
     /**
      * Print out an array
      * @param array the array to print
-     * @param digits the number of digits after
-     * the decimal place to use
      */
     public static String toString(double[][] array) {
         return toString(array, 7);
@@ -104,8 +99,6 @@ public class ABAGAILArrays {
 
     /**
      * Print an int array to a string
-     * @param data the data
-     * @return the string
      */
     public static String toString(int[] array) {
         String result = "{";
@@ -181,7 +174,7 @@ public class ABAGAILArrays {
      * @param a the array
      * @param s the starting index inclusive
      * @param e the ending index exclusive
-     * @return
+     *
      */
     public static int randomPartition(double[] a, int s, int e) {
         int i = random.nextInt(e - s) + s;
@@ -195,7 +188,7 @@ public class ABAGAILArrays {
      * @param a the array
      * @param s the starting index inclusive
      * @param e the ending index exclusive
-     * @return
+     *
      */
     public static int randomPartition(double[] a, int[] indices, int s, int e) {
         int i = random.nextInt(e - s) + s;
@@ -266,7 +259,6 @@ public class ABAGAILArrays {
             } else {
                 high = mid;
             }
-            mid = low + (high - low) / 2;
         }
         return high;
     }

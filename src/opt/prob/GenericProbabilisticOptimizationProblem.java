@@ -20,7 +20,6 @@ public class GenericProbabilisticOptimizationProblem extends GenericOptimization
      * Make a new generic probabilisitic optimiziation problem
      * @param eval the evaluation function
      * @param dist the initial parameter distribution
-     * @param fact the distribution factory
      */
     public GenericProbabilisticOptimizationProblem(EvaluationFunction eval, Distribution dist,
              Distribution d) {
@@ -31,6 +30,7 @@ public class GenericProbabilisticOptimizationProblem extends GenericOptimization
     /**
      * @see opt.prob.ProbabilisticOptimizationProblem#getDistribution()
      */
+    @Override
     public Distribution getDistribution() {
         return dist;
     }

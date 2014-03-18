@@ -30,6 +30,7 @@ public class FixedIterationTrainer implements Trainer {
     /**
      * @see shared.Trainer#train()
      */
+    @Override
     public double train() {
         double sum = 0;
         for (int i = 0; i < iterations; i++) {

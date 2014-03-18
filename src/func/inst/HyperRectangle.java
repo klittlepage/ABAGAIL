@@ -1,12 +1,11 @@
 package func.inst;
 
-import java.util.Arrays;
-
 import shared.Copyable;
 import shared.Instance;
-
 import util.linalg.DenseVector;
 import util.linalg.Vector;
+
+import java.util.Arrays;
 
 /**
  * A HyperRectangle class for a KDTree implementation
@@ -123,6 +122,7 @@ public class HyperRectangle implements Copyable {
      * Make a copy of this recangle
      * @return the copy
      */
+    @Override
     public Copyable copy() {
         return new HyperRectangle((Vector) min.copy(), (Vector) max.copy());
     }

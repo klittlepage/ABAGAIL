@@ -14,6 +14,7 @@ public abstract class AbstractConditionalDistribution extends AbstractDistributi
      * @param i the input
      * @return the output
      */
+    @Override
     public Instance sample(Instance i) {
         return distributionFor(i).sample();
     }
@@ -23,15 +24,18 @@ public abstract class AbstractConditionalDistribution extends AbstractDistributi
      * @param i the input
      * @return the output
      */
+    @Override
     public Instance mode(Instance i) {
         return distributionFor(i).sample();
     }
     
     /**
      * Probability of an instance
-     * @parma i the instance
+     * @param i the instance
+     *
      * @return the probability
      */
+    @Override
     public double p(Instance i) {
         return distributionFor(i).p(i.getLabel());
     }

@@ -1,8 +1,8 @@
 package opt.example;
 
-import util.linalg.Vector;
 import opt.EvaluationFunction;
 import shared.Instance;
+import util.linalg.Vector;
 
 /**
  * A function that counts the ones in the data
@@ -11,8 +11,8 @@ import shared.Instance;
  */
 public class CountOnesEvaluationFunction implements EvaluationFunction {
     /**
-     * @see opt.EvaluationFunction#value(opt.OptimizationData)
      */
+    @Override
     public double value(Instance d) {
         Vector data = d.getData();
         double val = 0;

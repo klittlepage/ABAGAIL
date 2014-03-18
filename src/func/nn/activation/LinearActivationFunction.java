@@ -8,15 +8,15 @@ package func.nn.activation;
 public class LinearActivationFunction extends DifferentiableActivationFunction {
 
     /**
-     * @see nn.function.DifferentiableActivationFunction#derivative(double)
      */
+    @Override
     public double derivative(double value) {
         return 1;
     }
 
     /**
-     * @see nn.function.ActivationFunction#activation(double)
      */
+    @Override
     public double value(double value) {
         return value;
     }

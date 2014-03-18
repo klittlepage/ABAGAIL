@@ -1,7 +1,6 @@
 package opt;
 
 import dist.Distribution;
-
 import shared.Instance;
 
 /**
@@ -25,8 +24,8 @@ public class DiscreteChangeOneNeighbor implements NeighborFunction {
     }
     
     /**
-     * @see opt.NeighborFunction#neighbor(opt.OptimizationData)
      */
+    @Override
     public Instance neighbor(Instance d) {
         Instance cod = (Instance) d.copy();
         int i = Distribution.random.nextInt(ranges.length);

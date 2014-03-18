@@ -1,7 +1,6 @@
 package opt;
 
 import dist.Distribution;
-
 import shared.Instance;
 
 /**
@@ -9,7 +8,8 @@ import shared.Instance;
  * @author Andrew Guillory gtg008g@mail.gatech.edu
  * @version 1.0
  */
-public class SimulatedAnnealing extends OptimizationAlgorithm {
+public class SimulatedAnnealing extends
+        OptimizationAlgorithm<HillClimbingProblem> {
     
     /**
      * The current optimiation data
@@ -37,7 +37,8 @@ public class SimulatedAnnealing extends OptimizationAlgorithm {
      * @param cooling the cooling exponent
      * @param hcp the problem to solve
      */
-    public SimulatedAnnealing(double t, double cooling, HillClimbingProblem hcp) {
+    public SimulatedAnnealing(double t, double cooling,
+                              HillClimbingProblem hcp) {
         super(hcp);
         this.t = t;
         this.cooling = cooling;
@@ -48,8 +49,9 @@ public class SimulatedAnnealing extends OptimizationAlgorithm {
     /**
      * @see shared.Trainer#train()
      */
+    @Override
     public double train() {
-        HillClimbingProblem p = (HillClimbingProblem) getOptimizationProblem();
+        final HillClimbingProblem p = getOptimizationProblem();
         Instance neigh = p.neighbor(cur);
         double neighVal = p.value(neigh);
         if (neighVal > curVal || Distribution.random.nextDouble() < 
@@ -64,6 +66,7 @@ public class SimulatedAnnealing extends OptimizationAlgorithm {
     /**
      * @see opt.OptimizationAlgorithm#getOptimal()
      */
+    @Override
     public Instance getOptimal() {
         return cur;
     }

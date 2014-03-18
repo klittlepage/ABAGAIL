@@ -1,14 +1,10 @@
 package func;
 
-import java.util.Arrays;
-
+import dist.*;
 import shared.DataSet;
 import shared.Instance;
-import dist.*;
-import dist.Distribution;
-import dist.MixtureDistribution;
-import dist.DiscreteDistribution;
-import dist.MultivariateGaussian;
+
+import java.util.Arrays;
 
 /**
  * An em clusterer
@@ -71,8 +67,8 @@ public class EMClusterer extends AbstractConditionalDistribution implements Func
     }
 
     /**
-     * @see func.Classifier#classDistribution(shared.Instance)
      */
+    @Override
     public Distribution distributionFor(Instance instance) {
         // calculate the log probs
         double[] probs = new double[mixture.getComponents().length];
@@ -97,6 +93,7 @@ public class EMClusterer extends AbstractConditionalDistribution implements Func
     /**
      * @see func.FunctionApproximater#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet set) {
         // kmeans initialization
         KMeansClusterer kmeans = new KMeansClusterer(k);
@@ -154,6 +151,7 @@ public class EMClusterer extends AbstractConditionalDistribution implements Func
     /**
      * @see func.FunctionApproximater#value(shared.Instance)
      */
+    @Override
     public Instance value(Instance i) {
         return distributionFor(i).mode();
     }

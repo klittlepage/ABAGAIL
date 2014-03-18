@@ -3,12 +3,7 @@ package func;
 import dist.AbstractConditionalDistribution;
 import dist.DiscreteDistribution;
 import dist.Distribution;
-import func.dtree.BinaryDecisionTreeSplit;
-import func.dtree.DecisionTreeNode;
-import func.dtree.DecisionTreeSplit;
-import func.dtree.DecisionTreeSplitStatistics;
-import func.dtree.InformationGainSplitEvaluator;
-import func.dtree.SplitEvaluator;
+import func.dtree.*;
 import shared.DataSet;
 import shared.DataSetDescription;
 import shared.Instance;
@@ -38,7 +33,6 @@ public class DecisionStumpClassifier extends AbstractConditionalDistribution imp
     /**
      * Create a new decision stump
      * @param splitEvaluator the splitting chooser
-     * @param instances the instances to build the tree from
      */
     public DecisionStumpClassifier(SplitEvaluator splitEvaluator) {
         this.splitEvaluator = splitEvaluator;
@@ -55,6 +49,7 @@ public class DecisionStumpClassifier extends AbstractConditionalDistribution imp
      * Estimate from data
      * @param instances the data set
      */
+    @Override
     public void estimate(DataSet instances) {
         // make the description if it isn't there
         if (instances.getDescription() == null) {
@@ -94,14 +89,14 @@ public class DecisionStumpClassifier extends AbstractConditionalDistribution imp
                 }
             }
         }
-        DecisionTreeNode node = new DecisionTreeNode(bestSplit, bestStats, 
+        return new DecisionTreeNode(bestSplit, bestStats,
             new DecisionTreeNode[bestStats.getBranchCount()]);
-        return node;
     }
 
     /**
      * @see dist.ConditionalDistribution#distributionFor(shared.Instance)
      */
+    @Override
     public Distribution distributionFor(Instance instance) {
         int branch = stump.getSplit().getBranchOf(instance);
         if (stump.getSplitStatistics().getInstanceCount(branch) == 0) {
@@ -115,6 +110,7 @@ public class DecisionStumpClassifier extends AbstractConditionalDistribution imp
     /**
      * @see func.FunctionApproximater#value(shared.Instance)
      */
+    @Override
     public Instance value(Instance i) {
         return distributionFor(i).mode();
     }

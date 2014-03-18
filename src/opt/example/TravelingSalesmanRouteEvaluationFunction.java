@@ -21,8 +21,8 @@ public class TravelingSalesmanRouteEvaluationFunction extends TravelingSalesmanE
     }
 
     /**
-     * @see opt.EvaluationFunction#value(opt.OptimizationData)
      */
+    @Override
     public double value(Instance d) {
         double distance = 0;
         for (int i = 0; i < d.size() - 1; i++) {

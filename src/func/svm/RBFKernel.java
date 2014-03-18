@@ -31,8 +31,8 @@ public class RBFKernel extends Kernel {
 
 
     /**
-     * @see svm.Kernel#value(svm.SupportVectorMachineData, svm.SupportVectorMachineData)
      */
+    @Override
     public double value(Instance a, Instance b) {
         Vector va = a.getData();
         Vector vb = b.getData();

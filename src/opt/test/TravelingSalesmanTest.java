@@ -1,30 +1,22 @@
 package opt.test;
 
-import java.util.Arrays;
-import java.util.Random;
-
 import dist.DiscreteDependencyTree;
 import dist.DiscretePermutationDistribution;
 import dist.DiscreteUniformDistribution;
 import dist.Distribution;
-
-import opt.SwapNeighbor;
-import opt.GenericHillClimbingProblem;
-import opt.HillClimbingProblem;
-import opt.NeighborFunction;
-import opt.RandomizedHillClimbing;
-import opt.SimulatedAnnealing;
-import opt.example.*;
-import opt.ga.CrossoverFunction;
-import opt.ga.SwapMutation;
-import opt.ga.GenericGeneticAlgorithmProblem;
-import opt.ga.GeneticAlgorithmProblem;
-import opt.ga.MutationFunction;
-import opt.ga.StandardGeneticAlgorithm;
+import opt.*;
+import opt.example.TravelingSalesmanCrossOver;
+import opt.example.TravelingSalesmanEvaluationFunction;
+import opt.example.TravelingSalesmanRouteEvaluationFunction;
+import opt.example.TravelingSalesmanSortEvaluationFunction;
+import opt.ga.*;
 import opt.prob.GenericProbabilisticOptimizationProblem;
 import opt.prob.MIMIC;
 import opt.prob.ProbabilisticOptimizationProblem;
 import shared.FixedIterationTrainer;
+
+import java.util.Arrays;
+import java.util.Random;
 
 /**
  * 

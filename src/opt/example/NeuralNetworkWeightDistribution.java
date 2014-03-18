@@ -1,7 +1,6 @@
 package opt.example;
 
 import dist.AbstractDistribution;
-
 import shared.DataSet;
 import shared.Instance;
 
@@ -26,15 +25,15 @@ public class NeuralNetworkWeightDistribution extends AbstractDistribution {
     }
 
     /**
-     * @see dist.Distribution#probabilityOf(shared.Instance)
      */
+    @Override
     public double p(Instance i) {
         return 1;
     }
 
     /**
-     * @see dist.Distribution#generateRandom(shared.Instance)
      */
+    @Override
     public Instance sample(Instance ignored) {
         double[] weights = new double[weightCount];
         for (int i = 0; i < weights.length; i++) {
@@ -44,8 +43,8 @@ public class NeuralNetworkWeightDistribution extends AbstractDistribution {
     }
 
     /**
-     * @see dist.Distribution#generateMostLikely(shared.Instance)
      */
+    @Override
     public Instance mode(Instance ignored) {
         return sample(ignored);
     }
@@ -53,8 +52,8 @@ public class NeuralNetworkWeightDistribution extends AbstractDistribution {
     /**
      * @see dist.Distribution#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet observations) {
-        return;
     }
     
     

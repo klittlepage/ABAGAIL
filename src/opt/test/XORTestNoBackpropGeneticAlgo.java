@@ -3,7 +3,6 @@ package opt.test;
 import func.nn.feedfwd.FeedForwardNetwork;
 import func.nn.feedfwd.FeedForwardNeuralNetworkFactory;
 import opt.OptimizationAlgorithm;
-import opt.RandomizedHillClimbing;
 import opt.example.NeuralNetworkOptimizationProblem;
 import opt.ga.StandardGeneticAlgorithm;
 import shared.*;
@@ -16,7 +15,7 @@ import shared.*;
  * the neural network optimization problem.
  * 
  * @author Jesse Rosalia <https://github.com/theJenix>
- * @date 2013-03-05
+ * Last edited: 2013-03-05
  */
 public class XORTestNoBackpropGeneticAlgo {
 
@@ -77,11 +76,11 @@ public class XORTestNoBackpropGeneticAlgo {
         
         //10) Run the training data through the network with the weights discovered through optimization, and
         //    print out the expected label and result of the classifier for each instance.
-        for (int i = 0; i < patterns.length; i++) {
-            network.setInputValues(patterns[i].getData());
+        for (final Instance pattern : patterns) {
+            network.setInputValues(pattern.getData());
             network.run();
             System.out.println("~~");
-            System.out.println(patterns[i].getLabel());
+            System.out.println(pattern.getLabel());
             System.out.println(network.getOutputValues());
         }
     }

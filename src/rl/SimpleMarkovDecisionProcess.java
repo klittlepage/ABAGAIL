@@ -1,12 +1,12 @@
 package rl;
 
-import shared.Instance;
 import dist.Distribution;
 import dist.UnivariateGaussian;
 import dist.hmm.ModularHiddenMarkovModel;
 import dist.hmm.SimpleStateDistribution;
 import dist.hmm.SimpleStateDistributionTable;
 import dist.hmm.StateDistribution;
+import shared.Instance;
 
 /**
  * A markov decision process with rewards unconditional on actions
@@ -44,6 +44,7 @@ public class SimpleMarkovDecisionProcess extends ModularHiddenMarkovModel implem
      * @param state the state
      * @return the reward
      */
+    @Override
     public double reward(int state, int action) {
         return ((UnivariateGaussian) getOutputDistributions()[state]).getMean();
     }
@@ -81,6 +82,7 @@ public class SimpleMarkovDecisionProcess extends ModularHiddenMarkovModel implem
      * @param a the action
      * @return the probability
      */
+    @Override
     public double transitionProbability(int i, int j, int a) {
         return ((SimpleStateDistributionTable) getTransitionDistributions()[i])
             .getProbabilityMatrix()[a][j];
@@ -92,6 +94,7 @@ public class SimpleMarkovDecisionProcess extends ModularHiddenMarkovModel implem
      * @param a the action
      * @return the next state
      */
+    @Override
     public int sampleState(int i, int a) {
         return getTransitionDistributions()[i].generateRandomState(new Instance(a));
     }
@@ -100,6 +103,7 @@ public class SimpleMarkovDecisionProcess extends ModularHiddenMarkovModel implem
      * Get the action count
      * @return the action count
      */
+    @Override
     public int getActionCount() {
         return ((SimpleStateDistributionTable) 
             getTransitionDistributions()[0]).getInputRange();
@@ -118,6 +122,7 @@ public class SimpleMarkovDecisionProcess extends ModularHiddenMarkovModel implem
     /**
      * @see rl.MarkovDecisionProcess#sampleInitialState()
      */
+    @Override
     public int sampleInitialState() {
         return sampleInitialState(null);
     }
@@ -125,6 +130,7 @@ public class SimpleMarkovDecisionProcess extends ModularHiddenMarkovModel implem
     /**
      * @see rl.MarkovDecisionProcess#isTerminalState(int)
      */
+    @Override
     public boolean isTerminalState(int state) {
         return false;
     }

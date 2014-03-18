@@ -12,8 +12,8 @@ public class DFSTree implements GraphTransformation {
     boolean[] visited;
 
     /**
-     * @see graph.GraphTransform#transform(graph.Graph)
      */
+    @Override
     public Graph transform(Graph g) {
         visited = new boolean[g.getNodeCount()];
         for (int i = 0; i < visited.length; i++) {
@@ -28,7 +28,6 @@ public class DFSTree implements GraphTransformation {
     
     /**
      * Perform a depth first search on the graph
-     * @param g the graph to search
      */
     private void dfs(Node n) {
         visited[n.getLabel()] = true;

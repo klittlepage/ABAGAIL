@@ -1,13 +1,9 @@
 package func.test;
 
+import func.dtree.*;
 import shared.DataSet;
 import shared.DataSetDescription;
 import shared.Instance;
-import func.dtree.DecisionTreeSplit;
-import func.dtree.DecisionTreeSplitStatistics;
-import func.dtree.GINISplitEvaluator;
-import func.dtree.InformationGainSplitEvaluator;
-import func.dtree.StandardDecisionTreeSplit;
 
 /**
  * Test the class

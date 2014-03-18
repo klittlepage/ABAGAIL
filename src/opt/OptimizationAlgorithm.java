@@ -8,17 +8,18 @@ import shared.Trainer;
  * @author Andrew Guillory gtg008g@mail.gatech.edu
  * @version 1.0
  */
-public abstract class OptimizationAlgorithm implements Trainer {
+public abstract class OptimizationAlgorithm<T extends OptimizationProblem>
+        implements Trainer {
     /**
      * The problem to optimize
      */
-    private OptimizationProblem op;
+    private T op;
     
     /**
      * Make a new optimization algorithm
      * @param op the problem to optimize
      */
-    public OptimizationAlgorithm(OptimizationProblem op) {
+    public OptimizationAlgorithm(T op) {
         this.op = op;
     }
     
@@ -26,7 +27,7 @@ public abstract class OptimizationAlgorithm implements Trainer {
      * Get an optimization problem
      * @return the problem
      */
-    public OptimizationProblem getOptimizationProblem() {
+    public T getOptimizationProblem() {
         return op;
     }
     

@@ -1,16 +1,15 @@
 package shared.reader;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import shared.DataSet;
 import shared.Instance;
-import shared.tester.Comparison;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Separates Discrete Labels into Binary representation for better use in Neural Networks
  * @author Alex Linton <https://github.com/lexlinton>
- * @date 2013-03-05
+ * Last edited: 2013-03-05
  */
 
 public class DataSetLabelBinarySeperator {
@@ -22,7 +21,7 @@ public class DataSetLabelBinarySeperator {
 		for(int i = 0; i < set.size(); i++){
 			if(!labels.contains(new Integer(set.getInstances()[i].getLabel().getDiscrete()))){
 				numberOfLabels++;
-				labels.add(new Integer(set.getInstances()[i].getLabel().getDiscrete()));
+				labels.add(set.getInstances()[i].getLabel().getDiscrete());
 			}
 		}
 		double[] values = new double[numberOfLabels];
@@ -43,10 +42,8 @@ public class DataSetLabelBinarySeperator {
 	 *  the output label, based on the max value found in the instance.
 	 *  
 	 *  NOTE: This assumes labels that were split using separateLabels, and
-	 *  a function that maps output values to 
-	 * 
-	 * @param instance
-	 * @return
+	 *  a function that maps output values to
+     *
 	 */
     public static Instance combineLabels(Instance instance) {
         //if it's already a size 1 instance, we assume it's already collapsed...otherwise

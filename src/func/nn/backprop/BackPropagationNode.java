@@ -28,9 +28,7 @@ public class BackPropagationNode extends FeedForwardNode {
 	/**
 	 * Create a new back propogation node
 	 * @param function the differentiable activation function
-	 * @param learningRate the learning rate
-	 * @param momentum the momentum
-	 */
+     */
 	public BackPropagationNode(DifferentiableActivationFunction function) {
 	    super(function);
     }
@@ -139,8 +137,8 @@ public class BackPropagationNode extends FeedForwardNode {
 
     
     /**
-     * @see nn.Node#createLink()
      */
+    @Override
     public Link createLink() {
         return new BackPropagationLink();
     }

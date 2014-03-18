@@ -1,10 +1,9 @@
 package func.nn.feedfwd;
-import func.nn.feedfwd.FeedForwardNode;
 
 /**
  * 
  * @author Jesse Rosalia <https://github.com/theJenix>
- * @date 2013-03-05
+ * Last edited: 2013-03-05
  */
 public class FeedForwardBiasNode extends FeedForwardNode {
 
@@ -14,7 +13,7 @@ public class FeedForwardBiasNode extends FeedForwardNode {
     }
 
     /**
-* @see nn.FeedForwardNode#feedforward()
-*/
+     */
+    @Override
     public void feedforward() { }
 }

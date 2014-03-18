@@ -14,51 +14,45 @@ import shared.tester.RawOutputTestMetric;
  * to be valid.
  * 
  * @author Jesse Rosalia <https://github.com/theJenix>
- * @date 2013-03-07
+ * Last edited:  2013-03-07
  */
 public interface Runner {
 
     /**
      * Get the accuracy metric test metric for the last run, for reporting % correct
      * and % incorrect.
-     * 
-     * @return
+     *
      */
     public AccuracyTestMetric getAccuracyMetric();
     
     /**
      * Get the confusion matrix for the last run.
-     * 
-     * @return
+     *
      */
     public ConfusionMatrixTestMetric getConfusionMatrix();
     
     /**
      * Get a name for this runner.  This is likely the name of the implementation
      * combined with the name of the data set.
-     * 
-     * @return
+     *
      */
     public String getName();
     
     /**
      * Get the raw output metric for the last run.
-     * 
-     * @return
+     *
      */
     public RawOutputTestMetric getRawOutput();
     
     /**
      * Get the training time for the last run.
-     * 
-     * @return
+     *
      */
     public long getTrainingTime();
 
     /**
      * Get the testing time for the last run.
-     * 
-     * @return
+     *
      */
     public long getTestTime();
 

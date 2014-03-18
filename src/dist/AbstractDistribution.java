@@ -12,6 +12,7 @@ public abstract class AbstractDistribution implements Distribution {
     /**
      * @see dist.Distribution#logp(shared.Instance)
      */
+    @Override
     public double logp(Instance i) {
         double p = p(i);
         double logp = Math.log(p);
@@ -25,6 +26,7 @@ public abstract class AbstractDistribution implements Distribution {
      * Get an unconditional sample
      * @return the unconditional sample
      */
+    @Override
     public Instance sample() {
         return sample(null);
     }
@@ -33,6 +35,7 @@ public abstract class AbstractDistribution implements Distribution {
      * Get an unconditional sample
      * @return the unconditional sample
      */
+    @Override
     public Instance mode() {
         return mode(null);
     }

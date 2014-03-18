@@ -4,12 +4,9 @@ import dist.MultivariateGaussian;
 import shared.DataSet;
 import shared.DataSetDescription;
 import shared.Instance;
-import shared.filt.ica.*;
-import util.linalg.DenseVector;
-import util.linalg.DiagonalMatrix;
-import util.linalg.Matrix;
-import util.linalg.SymmetricEigenvalueDecomposition;
-import util.linalg.Vector;
+import shared.filt.ica.ContrastFunction;
+import shared.filt.ica.HyperbolicTangentContrast;
+import util.linalg.*;
 
 /**
  * A filter for performing ICA on data
@@ -145,6 +142,7 @@ public class IndependentComponentAnalysis implements ReversibleFilter {
     /**
      * @see shared.filt.DataSetFilter#filter(shared.DataSet)
      */
+    @Override
     public void filter(DataSet dataSet) {
         pca.filter(dataSet);
         for (int i = 0; i < dataSet.size(); i++) {
@@ -158,6 +156,7 @@ public class IndependentComponentAnalysis implements ReversibleFilter {
     /**
      * @see shared.filt.ReversibleFilter#reverse(shared.DataSet)
      */
+    @Override
     public void reverse(DataSet dataSet) {
         for (int i = 0; i < dataSet.size(); i++) {
             Instance instance = dataSet.get(i);

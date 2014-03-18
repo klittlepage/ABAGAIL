@@ -1,12 +1,6 @@
 package rl.test;
 
-import rl.EpsilonGreedyStrategy;
-import rl.Policy;
-import rl.PolicyIteration;
-import rl.QLambda;
-import rl.SarsaLambda;
-import rl.SimpleMarkovDecisionProcess;
-import rl.ValueIteration;
+import rl.*;
 import shared.FixedIterationTrainer;
 import shared.ThresholdTrainer;
 

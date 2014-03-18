@@ -28,8 +28,8 @@ public class BasicUpdateRule extends WeightUpdateRule {
     }
 
     /**
-     * @see nn.backprop.BackPropagationUpdateRule#update(nn.backprop.BackPropagationLink)
      */
+    @Override
     public void update(BackPropagationLink link) {
         link.changeWeight(-learningRate * link.getError());
     }

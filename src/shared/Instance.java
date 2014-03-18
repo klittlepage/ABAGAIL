@@ -1,9 +1,9 @@
 package shared;
 
-import java.io.Serializable;
-
 import util.linalg.DenseVector;
 import util.linalg.Vector;
+
+import java.io.Serializable;
 
 /**
  * The abstract class representing some instance.
@@ -31,7 +31,6 @@ public class Instance implements Serializable, Copyable {
      * @param data the data itself
      * @param label the label
      * @param weight the weight
-     * @param dataSet the data set
      */
     public Instance(Vector data, Instance label, double weight) {
         this.data = data;
@@ -238,6 +237,7 @@ public class Instance implements Serializable, Copyable {
      * Make a new instance
      * @return the copy
      */
+    @Override
     public Copyable copy() {
         if (label != null) {
             return new Instance((Vector) data.copy(), (Instance) label.copy(), weight);

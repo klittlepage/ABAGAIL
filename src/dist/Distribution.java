@@ -1,10 +1,10 @@
 package dist;
 
-import java.io.Serializable;
-import java.util.Random;
-
 import shared.DataSet;
 import shared.Instance;
+
+import java.io.Serializable;
+import java.util.Random;
 
 /**
  * A interface for distributions

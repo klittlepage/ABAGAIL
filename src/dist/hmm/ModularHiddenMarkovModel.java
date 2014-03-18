@@ -1,9 +1,7 @@
 package dist.hmm;
 
 
-
 import dist.Distribution;
-
 import shared.Copyable;
 import shared.DataSet;
 import shared.Instance;
@@ -47,6 +45,7 @@ public class ModularHiddenMarkovModel implements HiddenMarkovModel, Copyable {
      * Get the state count for this model
      * @return the number of states in the model
      */
+    @Override
     public int getStateCount() {
         return transitionDistributions.length;
     }
@@ -106,6 +105,7 @@ public class ModularHiddenMarkovModel implements HiddenMarkovModel, Copyable {
      * @param o the initial observation
      * @return the probability
      */
+    @Override
     public double initialStateProbability(int i, Instance o) {
         return initialStateDistribution.p(i, o);
     }
@@ -118,6 +118,7 @@ public class ModularHiddenMarkovModel implements HiddenMarkovModel, Copyable {
      * @param o the observation at state i
      * @return the probability
      */
+    @Override
     public double transitionProbability(int i, int j, Instance o) {
         return transitionDistributions[i].p(j, o);
     }
@@ -128,6 +129,7 @@ public class ModularHiddenMarkovModel implements HiddenMarkovModel, Copyable {
      * @param o the observation
      * @return the probability
      */
+    @Override
     public double observationProbability(int i, Instance o) {
         return outputDistributions[i].p(o);
     }
@@ -135,6 +137,7 @@ public class ModularHiddenMarkovModel implements HiddenMarkovModel, Copyable {
     /**
      * @see dist.hmm.HiddenMarkovModel#sampleState(int, shared.Instance)
      */
+    @Override
     public int sampleState(int i, Instance o) {
         return transitionDistributions[i].generateRandomState(o);
     }
@@ -142,6 +145,7 @@ public class ModularHiddenMarkovModel implements HiddenMarkovModel, Copyable {
     /**
      * @see dist.hmm.HiddenMarkovModel#sampleInitialState(shared.Instance)
      */
+    @Override
     public int sampleInitialState(Instance o) {
         return initialStateDistribution.generateRandomState(o);
     }
@@ -149,6 +153,7 @@ public class ModularHiddenMarkovModel implements HiddenMarkovModel, Copyable {
     /**
      * @see dist.hmm.HiddenMarkovModel#sampleObservation(int, shared.Instance)
      */
+    @Override
     public Instance sampleObservation(int i, Instance o) {
         return outputDistributions[i].sample(o);
     }
@@ -157,9 +162,9 @@ public class ModularHiddenMarkovModel implements HiddenMarkovModel, Copyable {
      * Match the outputs in state i to the given expectaions for the given 
      * sequence
      * @param i the state 
-     * @param expectations the expectations
      * @param sequence the sequence
      */
+    @Override
     public void estimateOutputDistribution(int i, DataSet sequence) {
        outputDistributions[i].estimate(sequence); 
     }
@@ -170,6 +175,7 @@ public class ModularHiddenMarkovModel implements HiddenMarkovModel, Copyable {
      * for observation sequence k
      * @param observations the observation sequence
      */
+    @Override
     public void estimateIntialStateDistribution(double[][] expectations, DataSet observations) {
         initialStateDistribution.estimate(expectations, observations);
     }
@@ -181,6 +187,7 @@ public class ModularHiddenMarkovModel implements HiddenMarkovModel, Copyable {
      * @param expectations the expected transitions [t][j] for time t to state j
      * @param sequence the observation sequence
      */
+    @Override
     public void estimateTransitionDistribution(int i, double[][] expectations, DataSet sequence) {
         transitionDistributions[i].estimate(expectations, sequence);
     }
@@ -206,6 +213,7 @@ public class ModularHiddenMarkovModel implements HiddenMarkovModel, Copyable {
     /**
      * @see shared.Copyable#copy()
      */
+    @Override
     public Copyable copy() {
         ModularHiddenMarkovModel copy = new ModularHiddenMarkovModel();
         copy.setInitialStateDistribution((StateDistribution) ((Copyable) initialStateDistribution).copy());

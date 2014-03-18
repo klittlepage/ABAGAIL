@@ -13,8 +13,6 @@ public interface GradientErrorMeasure extends ErrorMeasure {
     /**
      * Find the derivatives
      * @param output the outputs of the network
-     * @param targets the targets of the network
-     * @param index the index of the current pattern
      * @return the error derivatives
      */
     public abstract double[] gradient(Instance output, Instance example);

@@ -64,23 +64,23 @@ public class UpperTriangularMatrix extends Matrix {
 	}
 
 	/**
-	 * @see linalg.Matrix#m()
-	 */
-	public int m() {
+     */
+	@Override
+    public int m() {
 		return m;
 	}
 
 	/**
-	 * @see linalg.Matrix#n()
-	 */
-	public int n() {
+     */
+	@Override
+    public int n() {
 		return n;
 	}
 
 	/**
-	 * @see linalg.Matrix#get(int, int)
-	 */
-	public double get(int i, int j) {
+     */
+	@Override
+    public double get(int i, int j) {
 		if (i < m() && j < n() && i > j) {
 			return 0;
 		} else {
@@ -89,18 +89,18 @@ public class UpperTriangularMatrix extends Matrix {
 	}
 
 	/**
-	 * @see linalg.Matrix#set(int, int, double)
-	 */
-	public void set(int i, int j, double d) {
+     */
+	@Override
+    public void set(int i, int j, double d) {
 		if (!(i < m() && j < n() && i > j && d == 0)) {
 			data[i][j - i] = d;
 		}
 	}
 	
 	/**
-	 * @see linalg.Matrix#transpose()
-	 */
-	public Matrix transpose() {
+     */
+	@Override
+    public Matrix transpose() {
 		LowerTriangularMatrix result = new LowerTriangularMatrix(n(), m());
 		 for (int i = 0; i < data.length; i++) {
 		 	for (int j = 0; j < data[i].length; j++) {
@@ -162,14 +162,12 @@ public class UpperTriangularMatrix extends Matrix {
     }
 
 	/**
-	 * @see linalg.Matrix#copy()
-	 */
-	public Copyable copy() {
+     */
+	@Override
+    public Copyable copy() {
 		UpperTriangularMatrix result = new UpperTriangularMatrix(m(), n());
 		for (int i = 0; i < data.length; i++) {
-			for (int j = 0; j < data[i].length; j++) {
-				result.data[i][j] = data[i][j];		
-			}
+            System.arraycopy(data[i], 0, result.data[i], 0, data[i].length);
 		}
 		return result;
 	}

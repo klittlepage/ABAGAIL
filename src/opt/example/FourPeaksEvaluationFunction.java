@@ -1,8 +1,8 @@
 package opt.example;
 
-import util.linalg.Vector;
 import opt.EvaluationFunction;
 import shared.Instance;
+import util.linalg.Vector;
 
 /**
  * A four peaks evaluation function
@@ -24,8 +24,8 @@ public class FourPeaksEvaluationFunction implements EvaluationFunction {
     }
 
     /**
-     * @see opt.EvaluationFunction#value(opt.OptimizationData)
      */
+    @Override
     public double value(Instance d) {
         Vector data = d.getData();
         int i = 0;

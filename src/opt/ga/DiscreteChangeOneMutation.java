@@ -1,7 +1,6 @@
 package opt.ga;
 
 import dist.Distribution;
-
 import shared.Instance;
 
 /**
@@ -24,8 +23,8 @@ public class DiscreteChangeOneMutation implements MutationFunction {
     }
 
     /**
-     * @see opt.ga.MutationFunction#mutate(opt.OptimizationData)
      */
+    @Override
     public void mutate(Instance d) {
         int i = Distribution.random.nextInt(d.size());
         d.getData().set(i, Distribution.random.nextInt(ranges[i]));

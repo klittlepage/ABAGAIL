@@ -14,13 +14,13 @@ public class Graph {
     /**
      * The list of nodes
      */
-    private List nodes;
+    private List<Node> nodes;
     
     /**
      * Make a new graph
      */
     public Graph() {
-        nodes = new ArrayList();
+        nodes = new ArrayList<Node>();
     }
     
     /**
@@ -38,7 +38,7 @@ public class Graph {
      * @return the node
      */
     public Node getNode(int i) {
-        return (Node) nodes.get(i);
+        return nodes.get(i);
     }
     
     /**
@@ -53,8 +53,8 @@ public class Graph {
      * Get the set of edges
      * @return the edges
      */
-    public Set getEdges() {
-        Set set = new HashSet();
+    public Set<Edge> getEdges() {
+        Set<Edge> set = new HashSet<Edge>();
         for (int i = 0; i < getNodeCount(); i++) {
             set.addAll(getNode(i).getEdges());
         }
@@ -64,7 +64,7 @@ public class Graph {
      * Get the nodes
      * @return the nodes
      */
-    public List getNodes() {
+    public List<Node> getNodes() {
         return nodes;
     }
 
@@ -72,7 +72,7 @@ public class Graph {
      * Set the nodes
      * @param list the nodes
      */
-    public void setNodes(List list) {
+    public void setNodes(List<Node> list) {
         nodes = list;
     }
     

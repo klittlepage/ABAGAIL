@@ -39,6 +39,7 @@ public class WeightedEdge extends Edge implements Comparable {
     /**
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
+    @Override
     public int compareTo(Object o) {
         WeightedEdge e = (WeightedEdge) o;
         if (getWeight() > e.getWeight()) {

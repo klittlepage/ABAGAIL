@@ -50,7 +50,6 @@ public class SingleClassSupportVectorMachine {
 
     /**
      * Evaluate the support vector machine for the given data
-     * @param data the data to evaluate for
      * @return the value
      */
     public Instance value(Instance d) {

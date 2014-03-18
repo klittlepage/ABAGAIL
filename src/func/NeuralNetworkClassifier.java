@@ -1,22 +1,12 @@
 package func;
 
-import dist.*;
-import dist.Distribution;
+import dist.AbstractConditionalDistribution;
 import dist.DiscreteDistribution;
-import shared.ConvergenceTrainer;
-import shared.DataSet;
-import shared.DataSetDescription;
-import shared.GradientErrorMeasure;
-import shared.Instance;
-import shared.SumOfSquaresError;
-import shared.Trainer;
+import dist.Distribution;
 import func.nn.activation.DifferentiableActivationFunction;
 import func.nn.activation.HyperbolicTangentSigmoid;
-import func.nn.backprop.BackPropagationNetwork;
-import func.nn.backprop.BackPropagationNetworkFactory;
-import func.nn.backprop.BatchBackPropagationTrainer;
-import func.nn.backprop.RPROPUpdateRule;
-import func.nn.backprop.WeightUpdateRule;
+import func.nn.backprop.*;
+import shared.*;
 
 /**
  * A neural network classifier
@@ -69,6 +59,7 @@ public class NeuralNetworkClassifier extends AbstractConditionalDistribution imp
     /**
      * @see func.FunctionApproximater#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet set) {
         if (set.getDescription() == null) {
             set.setDescription(new DataSetDescription(set));
@@ -101,6 +92,7 @@ public class NeuralNetworkClassifier extends AbstractConditionalDistribution imp
      * @param input the input
      * @return the distribution
      */
+    @Override
     public Distribution distributionFor(Instance input) {
         network.setInputValues(input.getData());
         network.run();
@@ -119,6 +111,7 @@ public class NeuralNetworkClassifier extends AbstractConditionalDistribution imp
     /**
      * @see func.FunctionApproximater#value(shared.Instance)
      */
+    @Override
     public Instance value(Instance i) {
         return distributionFor(i).mode();
     }

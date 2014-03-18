@@ -7,7 +7,8 @@ import shared.Instance;
  * @author Andrew Guillory gtg008g@mail.gatech.edu
  * @version 1.0
  */
-public class RandomizedHillClimbing extends OptimizationAlgorithm {
+public class RandomizedHillClimbing extends
+        OptimizationAlgorithm<HillClimbingProblem> {
     
     /**
      * The current optimization data
@@ -31,8 +32,9 @@ public class RandomizedHillClimbing extends OptimizationAlgorithm {
     /**
      * @see shared.Trainer#train()
      */
+    @Override
     public double train() {
-        HillClimbingProblem hcp = (HillClimbingProblem) getOptimizationProblem();
+        final HillClimbingProblem hcp = getOptimizationProblem();
         Instance neigh = hcp.neighbor(cur);
         double neighVal = hcp.value(neigh);
         if (neighVal > curVal) {
@@ -43,8 +45,8 @@ public class RandomizedHillClimbing extends OptimizationAlgorithm {
     }
 
     /**
-     * @see opt.OptimizationAlgorithm#getOptimalData()
      */
+    @Override
     public Instance getOptimal() {
         return cur;
     }

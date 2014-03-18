@@ -1,7 +1,7 @@
 package opt;
 
-import shared.Instance;
 import dist.Distribution;
+import shared.Instance;
 
 
 /**
@@ -33,8 +33,8 @@ public class GenericOptimizationProblem implements OptimizationProblem {
     
 
     /**
-     * @see opt.OptimizationProblem#value(opt.OptimizationData)
      */
+    @Override
     public double value(Instance d) {
         return eval.value(d);
     }
@@ -43,6 +43,7 @@ public class GenericOptimizationProblem implements OptimizationProblem {
     /**
      * @see opt.OptimizationProblem#random()
      */
+    @Override
     public Instance random() {
         return initial.sample(null);
     }

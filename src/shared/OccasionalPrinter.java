@@ -31,6 +31,7 @@ public class OccasionalPrinter implements Trainer {
     /**
      * @see shared.Trainer#train()
      */
+    @Override
     public double train() {
         if (iteration % iterationsPerPrint == 0) {
             System.out.println(trainer);

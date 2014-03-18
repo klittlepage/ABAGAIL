@@ -111,6 +111,7 @@ public class PrincipalComponentAnalysis implements ReversibleFilter {
     /**
      * @see shared.filt.DataSetFilter#filter(shared.DataSet)
      */
+    @Override
     public void filter(DataSet dataSet) {
         for (int i = 0; i < dataSet.size(); i++) {
             Instance instance = dataSet.get(i);
@@ -124,6 +125,7 @@ public class PrincipalComponentAnalysis implements ReversibleFilter {
     /**
      * @see shared.filt.ReversibleFilter#reverse(shared.DataSet)
      */
+    @Override
     public void reverse(DataSet dataSet) {
         for (int i = 0; i < dataSet.size(); i++) {
             Instance instance = dataSet.get(i);

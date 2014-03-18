@@ -16,15 +16,14 @@ public class MixedDistanceMeasure extends AbstractDistanceMeasure{
     
     /**
      * Make a new mixed distance measure
-     * @param measures the measures to use
      */
     public MixedDistanceMeasure(AttributeType[] types) {
        this.types = types;
     }
 
     /**
-     * @see memory.DistanceMeasure#distance(double[], double[])
      */
+    @Override
     public double value(Instance va, Instance vb) {
         double distance = 0;
         for (int i = 0; i < va.size(); i++) {

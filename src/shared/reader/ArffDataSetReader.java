@@ -1,23 +1,22 @@
 package shared.reader;
 
+import shared.DataSet;
+import shared.DataSetDescription;
+import shared.Instance;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import shared.DataSet;
-import shared.DataSetDescription;
-import shared.Instance;
 /**
  * Class to read in data from a ARFF file
  * @author Jarvis Johnson <https://github.com/Magicjarvis>
  * @author Alex Linton <https://github.com/lexlinton>
- * @date 2013-03-05
+ * Last edited 2013-03-05
  */
 public class ArffDataSetReader extends DataSetReader {
 
@@ -48,7 +47,7 @@ public class ArffDataSetReader extends DataSetReader {
 	/**
 	 * Parses the buffer in to a map attribute->
 	 * @param in Buffer to read from
-	 * @return 
+     *
 	 * @throws IOException
 	 */
 	private List<Map<String, Double>> processAttributes(BufferedReader in)
@@ -56,7 +55,7 @@ public class ArffDataSetReader extends DataSetReader {
 		String line = in.readLine();
 		List<Map<String, Double>> attributes
 			= new ArrayList<Map<String, Double>>();
-		while (line != null && line.toLowerCase().indexOf(DATA_TAG) == -1) {
+		while (line != null && !line.toLowerCase().contains(DATA_TAG)) {
 			if (!line.isEmpty() && line.charAt(0) != '%') {
 				String[] parts = line.split("\\s", SPLIT_LIMIT);
 				if (parts[0].equalsIgnoreCase(ATTRIBUTE_TAG)) {

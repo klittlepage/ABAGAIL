@@ -25,22 +25,22 @@ public class FixedDistribution extends AbstractDistribution implements Copyable 
     }
 
     /**
-     * @see dist.Distribution#probabilityOf(shared.Instance)
      */
+    @Override
     public double p(Instance i) {
         return dist.p(i);
     }
 
     /**
-     * @see dist.Distribution#logLikelihood(shared.Instance)
      */
+    @Override
     public double logp(Instance i) {
         return dist.logp(i);
     }
 
     /**
-     * @see dist.Distribution#generateRandom(shared.Instance)
      */
+    @Override
     public Instance sample(Instance i) {
         return dist.sample(i);
     }
@@ -48,6 +48,7 @@ public class FixedDistribution extends AbstractDistribution implements Copyable 
     /**
      * @see dist.Distribution#mode(shared.Instance)
      */ 
+    @Override
     public Instance mode(Instance i) {
         return dist.mode(i);
     }
@@ -55,8 +56,8 @@ public class FixedDistribution extends AbstractDistribution implements Copyable 
     /**
      * @see dist.Distribution#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet observations) {
-        return;
     }
 
     /**
@@ -69,6 +70,7 @@ public class FixedDistribution extends AbstractDistribution implements Copyable 
     /**
      * @see shared.Copyable#copy()
      */
+    @Override
     public Copyable copy() {
         return new FixedDistribution((Distribution) ((Copyable) dist).copy());
     }

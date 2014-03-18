@@ -4,13 +4,7 @@ import dist.MultivariateGaussian;
 import shared.DataSet;
 import shared.DataSetDescription;
 import shared.Instance;
-import util.linalg.CholeskyFactorization;
-import util.linalg.LowerTriangularMatrix;
-import util.linalg.Matrix;
-import util.linalg.RectangularMatrix;
-import util.linalg.SymmetricEigenvalueDecomposition;
-import util.linalg.UpperTriangularMatrix;
-import util.linalg.Vector;
+import util.linalg.*;
 
 /**
  * A filter that performs fisher linear discriminant
@@ -31,7 +25,6 @@ public class LinearDiscriminantAnalysis implements ReversibleFilter {
     
     /**
      * Make a new PCA filter
-     * @param toKeep the number of components to keep
      * @param dataSet the set form which to estimate components
      */
     public LinearDiscriminantAnalysis(DataSet dataSet) {
@@ -109,6 +102,7 @@ public class LinearDiscriminantAnalysis implements ReversibleFilter {
     /**
      * @see shared.filt.DataSetFilter#filter(shared.DataSet)
      */
+    @Override
     public void filter(DataSet dataSet) {
         for (int i = 0; i < dataSet.size(); i++) {
             Instance instance = dataSet.get(i);
@@ -122,6 +116,7 @@ public class LinearDiscriminantAnalysis implements ReversibleFilter {
     /**
      * @see shared.filt.ReversibleFilter#reverse(shared.DataSet)
      */
+    @Override
     public void reverse(DataSet dataSet) {
         for (int i = 0; i < dataSet.size(); i++) {
             Instance instance = dataSet.get(i);

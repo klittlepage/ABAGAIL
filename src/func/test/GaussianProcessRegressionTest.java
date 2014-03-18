@@ -1,9 +1,9 @@
 package func.test;
 
-import shared.DataSet;
-import shared.Instance;
 import func.GaussianProcessRegression;
 import func.svm.LinearKernel;
+import shared.DataSet;
+import shared.Instance;
 
 /**
  * Test the class
@@ -38,8 +38,8 @@ public class GaussianProcessRegressionTest {
            new LinearKernel(), .01);
         gp.estimate(set);
         System.out.println(gp);
-        for (int i = 0; i < tests.length; i++) {
-            System.out.println(gp.value(tests[i]));
+        for (final Instance test : tests) {
+            System.out.println(gp.value(test));
         }
     }
 }

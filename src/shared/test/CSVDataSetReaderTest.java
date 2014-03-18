@@ -1,13 +1,13 @@
 package shared.test;
 
-import java.io.File;
-
 import shared.DataSet;
 import shared.DataSetDescription;
-import shared.reader.CSVDataSetReader;
-import shared.reader.DataSetReader;
 import shared.filt.ContinuousToDiscreteFilter;
 import shared.filt.LabelSplitFilter;
+import shared.reader.CSVDataSetReader;
+import shared.reader.DataSetReader;
+
+import java.io.File;
 
 /**
  * A data set reader

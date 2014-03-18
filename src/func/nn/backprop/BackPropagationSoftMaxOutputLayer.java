@@ -12,8 +12,8 @@ public class BackPropagationSoftMaxOutputLayer
           
 
     /**
-     * @see nn.FeedForwardLayer#feedforward()
      */
+    @Override
     public void feedforward() {
         // feed forward to calculate
         // the weighted input sums

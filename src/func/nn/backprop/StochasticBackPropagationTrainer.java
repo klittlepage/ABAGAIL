@@ -1,11 +1,10 @@
 package func.nn.backprop;
 
+import func.nn.NetworkTrainer;
 import shared.DataSet;
 import shared.GradientErrorMeasure;
 import shared.Instance;
 import shared.filt.RandomOrderFilter;
-
-import func.nn.NetworkTrainer;
 
 /**
  * A standard batch back propagation trainer
@@ -34,8 +33,8 @@ public class StochasticBackPropagationTrainer extends NetworkTrainer {
     }
 
     /**
-     * @see nn.Trainer#train()
      */
+    @Override
     public double train() {
         BackPropagationNetwork network =
             (BackPropagationNetwork) getNetwork();

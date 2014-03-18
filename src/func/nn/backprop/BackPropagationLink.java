@@ -43,8 +43,8 @@ public class BackPropagationLink extends Link {
     private double learningRate;
     
     /**
-     * @see nn.Link#changeWeight(double)
      */
+    @Override
     public void changeWeight(double delta) {
          super.changeWeight(delta);
          lastChange = delta;

@@ -11,7 +11,7 @@ import java.util.List;
  * to be consumed by another program (GNUPlot, etc).
  * 
  * @author Jesse Rosalia <https://github.com/theJenix>
- * @date 2013-03-07
+ * Last edited: 2013-03-07
  *
  */
 public class CSVWriter implements Writer {
@@ -38,10 +38,6 @@ public class CSVWriter implements Writer {
         writeRow(this.fields);
     }
 
-    /**
-     * @param toWrite
-     * @throws IOException
-     */
     private void writeRow(List<String> toWrite) throws IOException {
         boolean addComma = false;
         for (String field : toWrite) {

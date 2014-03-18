@@ -17,7 +17,6 @@ public abstract class DecisionTreeSplit {
 
     /**
      * Get the branch of the given data
-     * @param d the data
      * @return the branch
      */
     public abstract int getBranchOf(Instance i);

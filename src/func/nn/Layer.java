@@ -1,10 +1,11 @@
 package func.nn;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import util.linalg.DenseVector;
 import util.linalg.Vector;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -17,13 +18,13 @@ public class Layer implements Serializable {
 	/**
 	 * The list of nodes in this layer
 	 */
-	private List nodes;
+	private List<Neuron> nodes;
 
 	/**
 	 * Make a new empty layer
 	 */
 	public Layer() {
-		nodes = new ArrayList();
+		nodes = new ArrayList<Neuron>();
 	}
 
 	/**
@@ -40,7 +41,7 @@ public class Layer implements Serializable {
 	 * @return the node
 	 */
 	public Neuron getNode(int i) {
-		return (Neuron) nodes.get(i);
+		return nodes.get(i);
 	}
 	
 	/**
@@ -119,10 +120,9 @@ public class Layer implements Serializable {
      * Get all of the links going into this layer
      * @return all of the links
      */
-    public List getLinks() {
-        List links = new ArrayList();
-        for (int i = 0; i < nodes.size(); i++) {
-            Neuron n = (Neuron) nodes.get(i);
+    public List<Link> getLinks() {
+        List<Link> links = new ArrayList<Link>();
+        for (Neuron n : nodes) {
             links.addAll(n.getInLinks());
         }
         return links;

@@ -56,6 +56,7 @@ public class ConvergenceTrainer implements Trainer {
     /**
      * @see Trainer#train()
      */
+    @Override
     public double train() {
         double lastError;
         double error = Double.MAX_VALUE;

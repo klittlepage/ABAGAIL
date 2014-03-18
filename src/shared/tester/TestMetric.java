@@ -1,7 +1,6 @@
 package shared.tester;
 
 import shared.Instance;
-import util.linalg.Vector;
 
 /**
  * This interface defines an API for test metrics.  Test metrics are notified by the Tester
@@ -10,7 +9,7 @@ import util.linalg.Vector;
  * in a human readable format.
  * 
  * @author Jesse Rosalia (https://www.github.com/theJenix)
- * @date 2013-03-05
+ * Last edited: 2013-03-05
  */
 public interface TestMetric {
 

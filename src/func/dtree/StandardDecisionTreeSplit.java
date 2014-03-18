@@ -30,15 +30,15 @@ public class StandardDecisionTreeSplit extends DecisionTreeSplit {
     }
 
     /**
-     * @see dtrees.DecisionTreeSplit#getNumberOfBranches()
      */
+    @Override
     public int getNumberOfBranches() {
         return attributeRange;
     }
 
     /**
-     * @see dtree.DecisionTreeSplit#getBranchOf(shared.Instance)
      */
+    @Override
     public int getBranchOf(Instance data) {
         return data.getDiscrete(attribute);
     }

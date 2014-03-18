@@ -25,7 +25,6 @@ public class DiscreteDistributionTable extends AbstractConditionalDistribution i
     /**
      * Make a new look up table conditional probability
      * @param probabilities the initial probabilities
-     * @param m the m estimate parameter
      */
     public DiscreteDistributionTable(double[][] probabilities) {
         discreteDistributions = new DiscreteDistribution[probabilities.length];
@@ -37,7 +36,6 @@ public class DiscreteDistributionTable extends AbstractConditionalDistribution i
     /**
      * Make a new table
      * @param table the table to use
-     * @param m the m estimate parameter
      */
     public DiscreteDistributionTable(DiscreteDistribution[] table) {
         this.discreteDistributions = table;
@@ -46,13 +44,14 @@ public class DiscreteDistributionTable extends AbstractConditionalDistribution i
     /**
      * @see dist.ConditionalDistribution#distributionFor(shared.Instance)
      */
+    @Override
     public Distribution distributionFor(Instance i) {
         return discreteDistributions[i.getDiscrete()];
     }
 
     /**
-     * @see shared.Distribution#reestimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet observations) {
         double[] sums = new double[discreteDistributions.length];
         double[][] probabilities = getProbabilityMatrix();
@@ -144,7 +143,6 @@ public class DiscreteDistributionTable extends AbstractConditionalDistribution i
      * Make a uniform table
      * @param inputRange the input range
      * @param outputRange the output range
-     * @param m the m value
      * @return the table
      */
     public static DiscreteDistributionTable uniform(int inputRange, int outputRange) {
@@ -159,7 +157,6 @@ public class DiscreteDistributionTable extends AbstractConditionalDistribution i
      * Make a random table
      * @param inputRange the input range
      * @param outputRange the output range
-     * @param m the m value
      * @return the table
      */
     public static DiscreteDistributionTable random(int inputRange, int outputRange) {
@@ -173,13 +170,13 @@ public class DiscreteDistributionTable extends AbstractConditionalDistribution i
     /**
      * @see shared.Copyable#copy()
      */
+    @Override
     public Copyable copy() {
         DiscreteDistribution[] copies = new DiscreteDistribution[discreteDistributions.length];
         for (int i = 0; i < copies.length; i++) {
             copies[i] = (DiscreteDistribution) discreteDistributions[i].copy();
         }
-        DiscreteDistributionTable copy = new DiscreteDistributionTable(copies);
-        return copy;
+        return new DiscreteDistributionTable(copies);
     }
 
 

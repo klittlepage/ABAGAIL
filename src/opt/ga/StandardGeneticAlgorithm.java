@@ -1,11 +1,10 @@
 package opt.ga;
 
-import java.util.Random;
-
 import dist.DiscreteDistribution;
-
 import opt.OptimizationAlgorithm;
 import shared.Instance;
+
+import java.util.Random;
 
 
 /**
@@ -14,7 +13,8 @@ import shared.Instance;
  * @author Andrew Guillory gtg008g@mail.gatech.edu
  * @version 1.0
  */
-public class StandardGeneticAlgorithm extends OptimizationAlgorithm {
+public class StandardGeneticAlgorithm extends
+        OptimizationAlgorithm<GeneticAlgorithmProblem> {
     
     /**
      * The random number generator
@@ -73,8 +73,9 @@ public class StandardGeneticAlgorithm extends OptimizationAlgorithm {
     /**
      * @see shared.Trainer#train()
      */
+    @Override
     public double train() {
-        GeneticAlgorithmProblem ga = (GeneticAlgorithmProblem) getOptimizationProblem();
+        final GeneticAlgorithmProblem ga = getOptimizationProblem();
         double[] probabilities = new double[population.length];
         // calculate probability distribution over the population
         double sum = 0;
@@ -125,10 +126,9 @@ public class StandardGeneticAlgorithm extends OptimizationAlgorithm {
     }
 
     /**
-     * @see opt.OptimizationAlgorithm#getOptimalData()
      */
+    @Override
     public Instance getOptimal() {
-        GeneticAlgorithmProblem ga = (GeneticAlgorithmProblem) getOptimizationProblem();
         double bestVal = values[0];
         int best = 0;
         for (int i = 1; i < population.length; i++) {

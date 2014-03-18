@@ -57,8 +57,8 @@ public class PolynomialKernel extends Kernel {
     }
 
     /**
-     * @see svm.Kernel#value(svm.SupportVectorMachineData, svm.SupportVectorMachineData)
      */
+    @Override
     public double value(Instance a, Instance b) {
         return Math.pow(dotProductWeight * a.getData().dotProduct(b.getData()) 
             + additiveConstant, exponent);

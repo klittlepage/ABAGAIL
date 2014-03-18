@@ -25,7 +25,6 @@ public class GenericGeneticAlgorithmProblem extends GenericOptimizationProblem i
     /**
      * Make a new generic genetic algorithm problem
      * @param crossover the cross over operator
-     * @param muation the mutation operator
      * @param eval the evaluation function
      * @param dist the initial distribution
      */
@@ -36,14 +35,14 @@ public class GenericGeneticAlgorithmProblem extends GenericOptimizationProblem i
         this.crossover = crossover;
     }
     /**
-     * @see opt.ga.GeneticAlgorithmProblem#mate(opt.Instance, opt.Instance)
      */
+    @Override
     public Instance mate(Instance a, Instance b) {
         return crossover.mate(a, b);
     }
     /**
-     * @see opt.ga.GeneticAlgorithmProblem#mutate(opt.Instance)
      */
+    @Override
     public void mutate(Instance d) {
         mutation.mutate(d);
     }

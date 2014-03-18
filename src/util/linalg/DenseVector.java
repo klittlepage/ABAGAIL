@@ -29,22 +29,22 @@ public class DenseVector extends Vector {
     }
 
     /**
-     * @see linalg.Vector#size()
      */
+    @Override
     public int size() {
         return data.length;
     }
 
     /**
-     * @see linalg.Vector#get(int)
      */
+    @Override
     public double get(int i) {
         return data[i];
     }
     
     /**
-     * @see linalg.Vector#set(int, double)
      */
+    @Override
     public void set(int i, double value) {
         data[i] = value;
     }

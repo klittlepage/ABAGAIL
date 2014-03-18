@@ -1,14 +1,12 @@
 package shared.tester;
 
 import shared.Instance;
-import shared.reader.DataSetLabelBinarySeperator;
-import util.linalg.Vector;
 
 /**
  * A test metric for accuracy.  This metric reports of % correct and % incorrect for a test run.
  * 
  * @author Jesse Rosalia <https://github.com/theJenix>
- * @date 2013-03-05
+ * Last edited: 2013-03-05
  */
 public class AccuracyTestMetric implements TestMetric {
 
@@ -29,6 +27,7 @@ public class AccuracyTestMetric implements TestMetric {
         return count > 0 ? ((double)countCorrect)/count : 1; //if count is 0, we consider it all correct
     }
 
+    @Override
     public void printResults() {
         //only report results if there were any results to report.
         if (count > 0) {

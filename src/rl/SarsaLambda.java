@@ -91,6 +91,7 @@ public class SarsaLambda implements PolicyLearner {
     /**
      * @see shared.Trainer#train()
      */
+    @Override
     public double train() {
         double reward = process.reward(state, action);
         totalReward += reward;
@@ -138,6 +139,7 @@ public class SarsaLambda implements PolicyLearner {
     /**
      * @see rl.PolicyLearner#getPolicy()
      */
+    @Override
     public Policy getPolicy() {
         int stateCount = process.getStateCount();
         int actionCount = process.getActionCount();

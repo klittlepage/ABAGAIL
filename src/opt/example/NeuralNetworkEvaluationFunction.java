@@ -1,11 +1,11 @@
 package opt.example;
 
-import util.linalg.Vector;
 import func.nn.NeuralNetwork;
 import opt.EvaluationFunction;
 import shared.DataSet;
 import shared.ErrorMeasure;
 import shared.Instance;
+import util.linalg.Vector;
 
 /**
  * An evaluation function that uses a neural network
@@ -40,8 +40,8 @@ public class NeuralNetworkEvaluationFunction implements EvaluationFunction {
     }
 
     /**
-     * @see opt.OptimizationProblem#value(opt.OptimizationData)
      */
+    @Override
     public double value(Instance d) {
         // set the links
         Vector weights = d.getData();

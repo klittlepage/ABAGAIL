@@ -1,16 +1,9 @@
 package func;
 
-import dist.*;
-import dist.Distribution;
+import dist.AbstractConditionalDistribution;
 import dist.DiscreteDistribution;
-import func.dtree.BinaryDecisionTreeSplit;
-import func.dtree.DecisionTreeNode;
-import func.dtree.DecisionTreeSplit;
-import func.dtree.DecisionTreeSplitStatistics;
-import func.dtree.InformationGainSplitEvaluator;
-import func.dtree.PruningCriteria;
-import func.dtree.SplitEvaluator;
-import func.dtree.StandardDecisionTreeSplit;
+import dist.Distribution;
+import func.dtree.*;
 import shared.DataSet;
 import shared.DataSetDescription;
 import shared.Instance;
@@ -57,7 +50,6 @@ public class DecisionTreeClassifier extends AbstractConditionalDistribution impl
      * @param splitEvaluator the splitting chooser
      * @param pruningCriteria the criteria for prunning
      * @param useBinarySplits whether or not to use binary splits
-     * @param instances the instances to build the tree from
      */
     public DecisionTreeClassifier(SplitEvaluator splitEvaluator, PruningCriteria pruningCriteria,
             boolean useBinarySplits) {
@@ -70,7 +62,6 @@ public class DecisionTreeClassifier extends AbstractConditionalDistribution impl
      * Create a new decision tree with no prunning
      * @param splitEvaluator the splitting chooser
      * @param useBinarySplits whether or not to use binary splits
-     * @param instances the instances to build the tree from
      */
     public DecisionTreeClassifier(SplitEvaluator splitEvaluator,
             boolean useBinarySplits) {
@@ -79,7 +70,6 @@ public class DecisionTreeClassifier extends AbstractConditionalDistribution impl
 
     /**
      * Create a new decision tree with no prunning
-     * @param instances the instances to build the tree from
      */
     public DecisionTreeClassifier() {
         this(new InformationGainSplitEvaluator(), null, false);
@@ -88,8 +78,8 @@ public class DecisionTreeClassifier extends AbstractConditionalDistribution impl
     
     /**
      * Estimate from the given data set
-     * @param set the set
      */
+    @Override
     public void estimate(DataSet instances) {
         // make the description if it isn't there
         if (instances.getDescription() == null) {
@@ -192,6 +182,7 @@ public class DecisionTreeClassifier extends AbstractConditionalDistribution impl
      * @param instance the instance to classify
      * @return the distribution
      */
+    @Override
     public Distribution distributionFor(Instance instance) {
         DecisionTreeNode node = root;
         while (node.getNode(node.getSplit().getBranchOf(instance)) != null) {
@@ -212,6 +203,7 @@ public class DecisionTreeClassifier extends AbstractConditionalDistribution impl
      * @param instance the instance to classify
      * @return the classification
      */
+    @Override
     public Instance value(Instance instance) {
         return distributionFor(instance).mode();
     }

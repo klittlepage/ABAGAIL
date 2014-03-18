@@ -14,15 +14,15 @@ public class GINISplitEvaluator extends SplitEvaluator {
      */
     private double gini(double[] classProbabilities) {
         double gini = 1;
-        for (int i = 0; i < classProbabilities.length; i++) {
-            gini -= classProbabilities[i] * classProbabilities[i];
+        for (final double classProbability : classProbabilities) {
+            gini -= classProbability * classProbability;
         }
         return gini;
     }
 
     /**
-     * @see dtrees.SplitEvaluator#splitValue(dtrees.DecisionTreeSplitStatistics)
      */
+    @Override
     public double splitValue(DecisionTreeSplitStatistics stats) {
         double giniIndex = 0;
         for (int i = 0; i < stats.getBranchCount(); i++) {

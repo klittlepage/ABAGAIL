@@ -1,7 +1,6 @@
 package shared.filt;
 
 import dist.Distribution;
-
 import shared.DataSet;
 import shared.Instance;
 
@@ -13,8 +12,8 @@ import shared.Instance;
 public class RandomOrderFilter implements DataSetFilter {
 
     /**
-     * @see shared.DataSetFilter#filter(shared.DataSet)
      */
+    @Override
     public void filter(DataSet dataSet) {
         for (int i = dataSet.size()-1; i > 0; i--) {
             int j = Distribution.random.nextInt(i + 1);

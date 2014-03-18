@@ -1,10 +1,6 @@
 package util.test;
 
-import util.linalg.DenseVector;
-import util.linalg.LUDecomposition;
-import util.linalg.Matrix;
-import util.linalg.RectangularMatrix;
-import util.linalg.Vector;
+import util.linalg.*;
 
 /**
  * A test of the LU decomposition

@@ -47,6 +47,7 @@ public class DiagonalMatrix extends Matrix {
     /**
      * @see util.linalg.Matrix#m()
      */
+    @Override
     public int m() {
         return m;
     }
@@ -54,6 +55,7 @@ public class DiagonalMatrix extends Matrix {
     /**
      * @see util.linalg.Matrix#n()
      */
+    @Override
     public int n() {
         return n;
     }
@@ -61,6 +63,7 @@ public class DiagonalMatrix extends Matrix {
     /**
      * @see util.linalg.Matrix#get(int, int)
      */
+    @Override
     public double get(int i, int j) {
         if (i == j && i < diagonal.length) {
             return diagonal[i];
@@ -74,6 +77,7 @@ public class DiagonalMatrix extends Matrix {
     /**
      * @see util.linalg.Matrix#set(int, int, double)
      */
+    @Override
     public void set(int i, int j, double d) {
         if (i == j && i < diagonal.length) {
             diagonal[i] = d;

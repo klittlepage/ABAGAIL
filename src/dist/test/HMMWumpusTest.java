@@ -1,15 +1,10 @@
 package dist.test;
 
-import dist.Distribution;
 import dist.DiscreteDistributionTable;
+import dist.Distribution;
+import dist.hmm.*;
 import shared.DataSet;
 import shared.Instance;
-import dist.hmm.HiddenMarkovModelReestimator;
-import dist.hmm.ForwardBackwardProbabilityCalculator;
-import dist.hmm.ModularHiddenMarkovModel;
-import dist.hmm.SimpleStateDistributionTable;
-import dist.hmm.StateDistribution;
-import dist.hmm.StateSequenceCalculator;
 
 /**
  * A test class for running a simple wumpus world
@@ -74,8 +69,8 @@ public class HMMWumpusTest {
         };
         System.out.println(model + "\n");
         System.out.println("Observation Sequences: ");
-        for (int i = 0; i < sequences.length; i++) {
-            System.out.println(sequences[i]);
+        for (final DataSet sequence1 : sequences) {
+            System.out.println(sequence1);
         }
         System.out.println();
         ForwardBackwardProbabilityCalculator fbc = new ForwardBackwardProbabilityCalculator(model, sequences[0]);
@@ -85,8 +80,8 @@ public class HMMWumpusTest {
         StateSequenceCalculator vc =new StateSequenceCalculator(model, sequences[0]);
         int[] states = vc.calculateStateSequence();
         System.out.println("Most likely state sequence of first sequence: ");
-        for (int i = 0; i < states.length; i++) {
-            System.out.print(states[i] + " ");
+        for (final int state : states) {
+            System.out.print(state + " ");
         }
         System.out.println();
         System.out.println();

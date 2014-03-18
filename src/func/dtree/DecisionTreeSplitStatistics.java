@@ -40,7 +40,6 @@ public class DecisionTreeSplitStatistics {
      * Calculate statistics from the given split and instances
      * @param split the split
      * @param instances the instances split on
-     * @param classRange the range of class values
      */
     public DecisionTreeSplitStatistics(DecisionTreeSplit split, 
             DataSet instances) {
@@ -141,7 +140,6 @@ public class DecisionTreeSplitStatistics {
     /**
      * Get the conditional class probabilites
      * for a given branch
-     * @param branc the branch
      * @return the probabilties
      */
     public double[] getConditionalClassProbabilities(int branch) {

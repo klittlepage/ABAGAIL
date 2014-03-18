@@ -40,6 +40,7 @@ public class ValueIteration implements PolicyLearner {
     /**
      * @see shared.Trainer#train()
      */
+    @Override
     public double train() {
         int stateCount = process.getStateCount();
         int actionCount = process.getActionCount();
@@ -48,7 +49,6 @@ public class ValueIteration implements PolicyLearner {
         for (int i = 0; i < stateCount; i++) {
             // find the maximum action
             double maxActionVal = -Double.MAX_VALUE;
-            int maxAction = 0;
             for (int a = 0; a < actionCount; a++) {
                 double actionVal = 0;
                 for (int j = 0; j < stateCount; j++) {
@@ -57,7 +57,6 @@ public class ValueIteration implements PolicyLearner {
                 actionVal = process.reward(i, a) + gamma * actionVal;
                 if (actionVal > maxActionVal) {
                     maxActionVal = actionVal;
-                    maxAction = a;
                 }
             }
             // check if we're done
@@ -69,6 +68,7 @@ public class ValueIteration implements PolicyLearner {
     /**
      * @see rl.PolicyLearner#getPolicy()
      */
+    @Override
     public Policy getPolicy() {
         int stateCount = process.getStateCount();
         int actionCount = process.getActionCount();

@@ -1,9 +1,9 @@
 package dist.hmm;
 
-import java.io.Serializable;
-
 import shared.DataSet;
 import shared.Instance;
+
+import java.io.Serializable;
 
 /**
  * The abstraction of a hidden markov model
@@ -56,7 +56,6 @@ public interface HiddenMarkovModel extends Serializable {
      * Get the probability of observing o in state i
      * @param i the current state
      * @param o the observation
-     * @param in the corresponding input
      * @return the probability
      */
     public abstract double observationProbability(
@@ -65,7 +64,6 @@ public interface HiddenMarkovModel extends Serializable {
      * Match the outputs in state i to the given expectaions for the given 
      * sequence
      * @param i the state 
-     * @param expectations the expectations
      * @param sequence the sequence
      */
     public abstract void estimateOutputDistribution(
@@ -75,7 +73,6 @@ public interface HiddenMarkovModel extends Serializable {
      * for the initial observation data
      * @param expectations [k][i] is the expected times in state i initially
      * for observation sequence k
-     * @param observations the observation sequence
      */
     public abstract void estimateIntialStateDistribution(
         double[][] expectations,
@@ -85,8 +82,6 @@ public interface HiddenMarkovModel extends Serializable {
      * transition observation data
      * @param i the start state
      * @param expectations the expected transitions [t][j] for time t to state j
-     * @param sequence the transition observatiosn
-     * @param sequence the observation sequence
      */
     public abstract void estimateTransitionDistribution(
         int i,

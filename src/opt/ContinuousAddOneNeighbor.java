@@ -1,7 +1,6 @@
 package opt;
 
 import dist.Distribution;
-
 import shared.Instance;
 
 /**
@@ -31,8 +30,8 @@ public class ContinuousAddOneNeighbor implements NeighborFunction {
     }
 
     /**
-     * @see opt.NeighborFunction#neighbor(opt.OptimizationData)
      */
+    @Override
     public Instance neighbor(Instance d) {
         int i = Distribution.random.nextInt(d.size());
         Instance cod = (Instance) d.copy();

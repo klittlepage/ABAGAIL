@@ -1,7 +1,7 @@
 package util.test;
 
-import util.linalg.RealSchurDecomposition;
 import util.linalg.Matrix;
+import util.linalg.RealSchurDecomposition;
 import util.linalg.RectangularMatrix;
 
 /**

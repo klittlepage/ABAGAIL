@@ -30,6 +30,7 @@ public class DecayingEpsilonGreedyStrategy implements ExplorationStrategy {
     /**
      * @see rl.ExplorationStrategy#action(double[])
      */
+    @Override
     public int action(double[] qvalues) {
         if (Distribution.random.nextDouble() < epsilon) {
             return Distribution.random.nextInt(qvalues.length);

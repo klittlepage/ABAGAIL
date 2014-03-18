@@ -1,10 +1,10 @@
 package dist;
 
-import java.util.Arrays;
-
 import shared.Copyable;
 import shared.DataSet;
 import shared.Instance;
+
+import java.util.Arrays;
 
 
 /**
@@ -43,8 +43,8 @@ public class MixtureDistribution extends AbstractDistribution implements Copyabl
     }
     
     /**
-     * @see hmm.distribution.OutputDistribution#match(double[], hmm.observation.Observation[])
      */
+    @Override
     public void estimate(DataSet observations) {
         // the mixing weights
     		double[] mixingWeights = componentDistribution.getProbabilities();
@@ -108,8 +108,8 @@ public class MixtureDistribution extends AbstractDistribution implements Copyabl
     }
 
     /**
-     * @see hmm.distribution.OutputDistribution#generateRandom(hmm.observation.Observation)
      */
+    @Override
     public Instance sample(Instance input) {
         int picked = componentDistribution.sample(input).getDiscrete();
         return components[picked].sample(input);
@@ -118,14 +118,15 @@ public class MixtureDistribution extends AbstractDistribution implements Copyabl
     /**
      * @see dist.Distribution#mode(shared.Instance)
      */
+    @Override
     public Instance mode(Instance input) {
         int picked = componentDistribution.mode(input).getDiscrete();
         return components[picked].mode(input);
     }
 
     /**
-     * @see hmm.distribution.OutputDistribution#probabilityOfObservation(hmm.observation.Observation)
      */
+    @Override
     public double p(Instance observation) {
         double probability = 0;
         for (int i = 0; i < components.length; i++) {
@@ -140,8 +141,8 @@ public class MixtureDistribution extends AbstractDistribution implements Copyabl
      */
     public String toString() {
         String result = componentDistribution.toString() + "\n";
-        for (int i = 0; i < components.length; i++) {
-            result += components[i] + "\n";
+        for (final Distribution component : components) {
+            result += component + "\n";
         }
         return result + "\n";
     }
@@ -165,6 +166,7 @@ public class MixtureDistribution extends AbstractDistribution implements Copyabl
     /**
      * @see shared.Copyable#copy()
      */
+    @Override
     public Copyable copy() {
         Distribution[] copies = new Distribution[components.length];
         for (int i = 0; i < copies.length; i++) {

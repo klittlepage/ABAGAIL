@@ -51,9 +51,9 @@ public class RPROPUpdateRule extends WeightUpdateRule {
 	}
 
 	/**
-	 * @see nn.backprop.BackPropagationUpdateRule#update(nn.backprop.BackPropagationLink)
-	 */
-	public void update(BackPropagationLink link) {
+     */
+	@Override
+    public void update(BackPropagationLink link) {
 		if (link.getLearningRate() == 0) {
 			link.setLearningRate(initialLearningRate);
 		}

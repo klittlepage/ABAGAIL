@@ -1,19 +1,16 @@
 package func.nn.feedfwd;
 
-import shared.DataSetDescription;
 import func.nn.Layer;
 import func.nn.activation.DifferentiableActivationFunction;
 import func.nn.activation.HyperbolicTangentSigmoid;
 import func.nn.activation.LinearActivationFunction;
 import func.nn.activation.LogisticSigmoid;
-import func.nn.feedfwd.FeedForwardLayer;
-import func.nn.feedfwd.FeedForwardNetwork;
-import func.nn.feedfwd.FeedForwardNode;
+import shared.DataSetDescription;
 
 /**
  * 
  * @author Jesse Rosalia <https://github.com/theJenix>
- * @date 2013-03-05
+ * Last edited: 2013-03-05
  */
 public class FeedForwardNeuralNetworkFactory {
 

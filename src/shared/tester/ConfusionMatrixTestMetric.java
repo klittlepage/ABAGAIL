@@ -1,12 +1,11 @@
 package shared.tester;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import shared.AttributeType;
 import shared.DataSetDescription;
 import shared.Instance;
-import shared.reader.DataSetLabelBinarySeperator;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A test metric to generate a confusion matrix.  This metric expects the true labels
@@ -14,7 +13,7 @@ import shared.reader.DataSetLabelBinarySeperator;
  * and to ensure clean output.
  * 
  * @author Jesse Rosalia <https://github.com/theJenix>
- * @date 2013-03-05
+ * Last edited: 2013-03-05
  */
 public class ConfusionMatrixTestMetric implements TestMetric {
 
@@ -74,7 +73,7 @@ public class ConfusionMatrixTestMetric implements TestMetric {
      * Construct the test metric with double valued labels.
      * 
      * NOTE: these display with several significant figures...we may want to change this.
-     * @param labels
+     *
      */
     public ConfusionMatrixTestMetric(double[] labels) {
         this.labels    = new Instance[labels.length];
@@ -87,8 +86,7 @@ public class ConfusionMatrixTestMetric implements TestMetric {
 
     /**
      * Construct the test metric with discrete (integer) labels.
-     * 
-     * @param labels
+     *
      */
     public ConfusionMatrixTestMetric(int[] labels) {
         this.labels    = new Instance[labels.length];
@@ -101,8 +99,7 @@ public class ConfusionMatrixTestMetric implements TestMetric {
     
     /**
      * Construct the test metric with boolean labels.
-     * 
-     * @param labels
+     *
      */
     public ConfusionMatrixTestMetric(boolean[] labels) {
         this.labels    = new Instance[labels.length];
@@ -116,8 +113,7 @@ public class ConfusionMatrixTestMetric implements TestMetric {
 
     /**
      * Construct the test metric with discrete values, contained in the label desc.
-     * 
-     * @param labelDesc
+     *
      */
     public ConfusionMatrixTestMetric(DataSetDescription labelDesc) {
         for (AttributeType type : labelDesc.getAttributeTypes()) {
@@ -152,9 +148,7 @@ public class ConfusionMatrixTestMetric implements TestMetric {
      * Find a label in the array of expected labels, using the Comparison class to validate correctness.
      * This is important for building the matrix, as it smooths out the noise (however small) that may be present
      * in the output of the classifier.
-     * 
-     * @param labels
-     * @param toFind
+     *
      * @return The corresponding label instance found in the array, or an object to represent the null label (i.e. not found)
      */
     private Instance findLabel(Instance[] labels, Instance toFind) {

@@ -1,9 +1,9 @@
 package util.linalg;
 
+import shared.Copyable;
+
 import java.io.Serializable;
 import java.text.DecimalFormat;
-
-import shared.Copyable;
 
 /**
  * A class representing a matrix, with linear algebra operations
@@ -251,6 +251,7 @@ public abstract class Matrix implements Serializable, Copyable {
      * Create and return a copy of this matrix
      * @return the copy
      */
+    @Override
     public Copyable copy() {
         double[][] result = new double[m()][n()];
         for (int i = 0; i < result.length; i++) {

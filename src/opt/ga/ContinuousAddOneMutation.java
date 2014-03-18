@@ -1,7 +1,6 @@
 package opt.ga;
 
 import dist.Distribution;
-
 import shared.Instance;
 
 /**
@@ -33,6 +32,7 @@ public class ContinuousAddOneMutation implements MutationFunction {
     /**
      * @see opt.ga.MutationFunction
      */
+    @Override
     public void mutate(Instance cod) {
         int i = Distribution.random.nextInt(cod.size());
         cod.getData().set(i, cod.getContinuous(i)+ Distribution.random.nextDouble() * amount - amount / 2);

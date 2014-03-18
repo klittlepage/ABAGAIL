@@ -23,8 +23,6 @@ public class DiscreteDependencyTreeRootNode extends Node {
     /**
      * Build a dependency tree root out of the given node
      * @param node the node to build the root out of
-     * @param ranges the ranges of the values
-     * @param data the data itself
      */
     public DiscreteDependencyTreeRootNode(DataSet dataSet, Node node, double m,  Tree t) {
         DataSetDescription dsd = dataSet.getDescription();
@@ -65,7 +63,6 @@ public class DiscreteDependencyTreeRootNode extends Node {
     
     /**
      * Sample from the root of the tree
-     * @param node the root of the tree
      */
     public void generateRandom(Instance instance) {
         DiscreteDistribution dd = new DiscreteDistribution(probabilities);
@@ -78,7 +75,6 @@ public class DiscreteDependencyTreeRootNode extends Node {
     
     /**
      * Sample from the root of the tree
-     * @param node the root of the tree
      */
     public void generateMostLikely(Instance instance) {
         DiscreteDistribution dd = new DiscreteDistribution(probabilities);

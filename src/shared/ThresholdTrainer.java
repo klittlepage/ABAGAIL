@@ -56,8 +56,9 @@ public class ThresholdTrainer implements Trainer {
     /**
      * @see Trainer#train()
      */
+    @Override
     public double train() {
-        double error = Double.MAX_VALUE;
+        double error;
         do {
            iterations++;
            error = trainer.train();

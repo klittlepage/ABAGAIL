@@ -1,13 +1,13 @@
 package dist;
 
 
+import shared.DataSet;
+import shared.DataSetDescription;
+import shared.Instance;
 import util.ABAGAILArrays;
 import util.graph.Edge;
 import util.graph.Node;
 import util.graph.Tree;
-import shared.DataSet;
-import shared.DataSetDescription;
-import shared.Instance;
 
 /**
  * A node in a discrete dependency tree
@@ -26,8 +26,6 @@ public class DiscreteDependencyTreeNode extends Node {
     
     /**
      * Make a dependency tree node
-     * @param ranges the ranges of the data
-     * @param data the data itself
      * @param node the node
      * @param parent the parent node index
      * @param m the bayesian estimate parameter
@@ -63,7 +61,6 @@ public class DiscreteDependencyTreeNode extends Node {
     
     /**
      * Calculate the probability
-     * @param instance the instance
      * @return the probability
      */
     public double probabilityOf(Instance sample) {

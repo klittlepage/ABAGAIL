@@ -1,8 +1,8 @@
 package func;
 
-import dist.*;
-import dist.Distribution;
+import dist.AbstractConditionalDistribution;
 import dist.DiscreteDistribution;
+import dist.Distribution;
 import shared.DataSet;
 import shared.DataSetDescription;
 import shared.Instance;
@@ -16,7 +16,7 @@ public class AdaBoostClassifier extends AbstractConditionalDistribution implemen
     /**
      * The classifier class to use
      */
-    private Class classifier;
+    private Class<? extends FunctionApproximater> classifier;
     
     /**
      * The stumps themselves
@@ -40,10 +40,10 @@ public class AdaBoostClassifier extends AbstractConditionalDistribution implemen
     /**
      * Create a new decision stump ensemble
      * @param size the number of stumps
-     * @param splitEvaluator the splitting strategy to use
      * @param classifier the classifier class to use
      */
-    public AdaBoostClassifier(int size, Class classifier) {
+    public AdaBoostClassifier(int size,
+            Class<? extends FunctionApproximater> classifier) {
         this.size = size;
         this.classifier = classifier;
     }
@@ -51,7 +51,6 @@ public class AdaBoostClassifier extends AbstractConditionalDistribution implemen
     /**
      * Create a new decision stump ensemble
      * @param size the number of stumps
-     * @param splitEvaluator the splitting strategy to use
      */
     public AdaBoostClassifier(int size) {
         this(size, DecisionStumpClassifier.class);
@@ -69,6 +68,7 @@ public class AdaBoostClassifier extends AbstractConditionalDistribution implemen
      * Build the ensemble
      * @param instances the instances to train with
      */
+    @Override
     public void estimate(DataSet instances) {
         classifiers = new FunctionApproximater[size];
         weights = new double[size];
@@ -86,8 +86,8 @@ public class AdaBoostClassifier extends AbstractConditionalDistribution implemen
         for (int i = 0; i < classifiers.length; i++) {
             try {
                 // make a new classifier
-                classifiers[i] = (FunctionApproximater) 
-                    classifier.getConstructor(new Class[0]).newInstance(new Object[0]);
+                classifiers[i] =
+                    classifier.getConstructor().newInstance();
                 classifiers[i].estimate(instances);
             } catch (Exception e) {
                 throw new UnsupportedOperationException("Could not create " + classifier);
@@ -137,6 +137,7 @@ public class AdaBoostClassifier extends AbstractConditionalDistribution implemen
      * @param data the data to classify
      * @return the class distribution
      */
+    @Override
     public Instance value(Instance data) {
         double[] votes = new double[classRange];
         for (int i = 0; i < classifiers.length && classifiers[i] != null; i++) {
@@ -153,8 +154,8 @@ public class AdaBoostClassifier extends AbstractConditionalDistribution implemen
     }
     
     /**
-     * @see func.Classifier#classDistribution(shared.Instance)
      */
+    @Override
     public Distribution distributionFor(Instance data) {
         Instance v = value(data);
         double[] p = new double[classRange];

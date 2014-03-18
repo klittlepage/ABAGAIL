@@ -1,8 +1,7 @@
 package opt.ga;
 
-import shared.Instance;
-
 import dist.Distribution;
+import shared.Instance;
 
 /**
  * A uniform cross over function
@@ -12,8 +11,8 @@ import dist.Distribution;
 public class UniformCrossOver implements CrossoverFunction {
 
     /**
-     * @see opt.CrossOverFunction#mate(opt.OptimizationData, opt.OptimizationData)
      */
+    @Override
     public Instance mate(Instance a, Instance b) {
         double[] newData = new double[a.size()];
         for (int i = 0; i < newData.length; i++) {

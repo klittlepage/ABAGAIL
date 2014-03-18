@@ -1,13 +1,9 @@
 package func.test;
 
+import func.DecisionStumpClassifier;
+import func.dtree.*;
 import shared.DataSet;
 import shared.Instance;
-import func.DecisionStumpClassifier;
-import func.dtree.ChiSquarePruningCriteria;
-import func.dtree.GINISplitEvaluator;
-import func.dtree.InformationGainSplitEvaluator;
-import func.dtree.PruningCriteria;
-import func.dtree.SplitEvaluator;
 
 /**
  * Test the class
@@ -44,8 +40,8 @@ public class DecisionStumpTest {
         DecisionStumpClassifier ds = new DecisionStumpClassifier(igse);
         ds.estimate(set);
         System.out.println(ds);
-        for (int i = 0; i < tests.length; i++) {
-            System.out.println(ds.value(tests[i]));
+        for (final Instance test : tests) {
+            System.out.println(ds.value(test));
         }
     }
 }

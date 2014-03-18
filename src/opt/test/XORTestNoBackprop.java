@@ -1,20 +1,12 @@
 package opt.test;
 
+import func.nn.feedfwd.FeedForwardNetwork;
+import func.nn.feedfwd.FeedForwardNeuralNetworkFactory;
 import opt.OptimizationAlgorithm;
 import opt.RandomizedHillClimbing;
 import opt.example.NeuralNetworkOptimizationProblem;
-import shared.DataSet;
-import shared.ErrorMeasure;
-import shared.FixedIterationTrainer;
-import shared.Instance;
-import shared.SumOfSquaresError;
-import shared.tester.AccuracyTestMetric;
-import shared.tester.ConfusionMatrixTestMetric;
-import shared.tester.NeuralNetworkTester;
-import shared.tester.TestMetric;
-import shared.tester.Tester;
-import func.nn.feedfwd.FeedForwardNetwork;
-import func.nn.feedfwd.FeedForwardNeuralNetworkFactory;
+import shared.*;
+import shared.tester.*;
 
 /**
  * Based on the XORTest test class, this class uses a standard FeedForwardNetwork
@@ -24,7 +16,7 @@ import func.nn.feedfwd.FeedForwardNeuralNetworkFactory;
  * the neural network optimization problem.
  * 
  * @author Jesse Rosalia <https://github.com/theJenix>
- * @date 2013-03-05
+ * Last edited: 2013-03-05
  */
 public class XORTestNoBackprop {
 

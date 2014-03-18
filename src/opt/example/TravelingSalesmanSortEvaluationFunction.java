@@ -21,8 +21,8 @@ public class TravelingSalesmanSortEvaluationFunction extends TravelingSalesmanEv
     }
 
     /**
-     * @see opt.EvaluationFunction#value(opt.OptimizationData)
      */
+    @Override
     public double value(Instance d) {
         double[] ddata = new double[d.size()];
         for (int i = 0; i < ddata.length; i++) {

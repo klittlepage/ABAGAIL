@@ -44,30 +44,30 @@ public class RectangularMatrix extends Matrix {
     }
 
 	/**
-	 * @see linalg.Matrix#m()
-	 */
-	public int m() {
+     */
+	@Override
+    public int m() {
 		return data.length;
 	}
 
 	/**
-	 * @see linalg.Matrix#n()
-	 */
-	public int n() {
+     */
+	@Override
+    public int n() {
 		return data[0].length;
 	}
 
 	/**
-	 * @see linalg.Matrix#get(int, int)
-	 */
-	public double get(int i, int j) {
+     */
+	@Override
+    public double get(int i, int j) {
 		return data[i][j];
 	}
 
 	/**
-	 * @see linalg.Matrix#set(int, int, double)
-	 */
-	public void set(int i, int j, double d) {
+     */
+	@Override
+    public void set(int i, int j, double d) {
 		data[i][j] = d;
 	}
 	
@@ -113,17 +113,17 @@ public class RectangularMatrix extends Matrix {
 	 */
 	public static RectangularMatrix diag(Matrix[] matrices) {
 		int m = 0, n = 0;
-		for (int i = 0; i < matrices.length; i++) {
-			m += matrices[i].m();
-			n += matrices[i].n();
-		}
+        for (final Matrix matrice1 : matrices) {
+            m += matrice1.m();
+            n += matrice1.n();
+        }
 		RectangularMatrix result = new RectangularMatrix(m, n);
 		int row = 0, column = 0;
-		for (int i = 0; i < matrices.length; i++) {
-			result.set(row, column, matrices[i]);
-			row += matrices[i].m();
-			column += matrices[i].n();
-		}
+        for (final Matrix matrice : matrices) {
+            result.set(row, column, matrice);
+            row += matrice.m();
+            column += matrice.n();
+        }
 		return result;
 	}
     

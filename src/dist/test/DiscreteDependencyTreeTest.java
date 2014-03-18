@@ -35,8 +35,8 @@ public class DiscreteDependencyTreeTest {
         System.out.println("Most likely");
         System.out.println(ddtd.mode(null));
         System.out.println("Probabilities of training data");
-        for (int i = 0; i < data.length; i++) {
-            System.out.println(ddtd.p(data[i]));
+        for (final Instance aData : data) {
+            System.out.println(ddtd.p(aData));
         }
     }
 

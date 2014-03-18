@@ -30,16 +30,16 @@ public class BinaryDecisionTreeSplit extends DecisionTreeSplit {
     }
 
     /**
-     * @see dtrees.DecisionTreeSplit#getNumberOfBranches()
      */
+    @Override
     public int getNumberOfBranches() {
         return 2;
     }
 
 
     /**
-     * @see dtree.DecisionTreeSplit#getBranchOf(shared.Instance)
      */
+    @Override
     public int getBranchOf(Instance i) {
         if (i.getDiscrete(attribute) == value) {
             return 0;

@@ -1,10 +1,13 @@
 package func.test;
 
+import func.nn.backprop.BackPropagationNetwork;
+import func.nn.backprop.BackPropagationNetworkFactory;
+import func.nn.backprop.BatchBackPropagationTrainer;
+import func.nn.backprop.RPROPUpdateRule;
 import shared.ConvergenceTrainer;
 import shared.DataSet;
 import shared.Instance;
 import shared.SumOfSquaresError;
-import func.nn.backprop.*;
 
 /**
  * An XOR test
@@ -39,11 +42,11 @@ public class NNBinaryClassificationTest {
         trainer.train();
         System.out.println("Convergence in " 
             + trainer.getIterations() + " iterations");
-        for (int i = 0; i < patterns.length; i++) {
-            network.setInputValues(patterns[i].getData());
+        for (final Instance pattern : patterns) {
+            network.setInputValues(pattern.getData());
             network.run();
             System.out.println("~~");
-            System.out.println(patterns[i].getLabel());
+            System.out.println(pattern.getLabel());
             System.out.println(network.getOutputValues());
         }
     }

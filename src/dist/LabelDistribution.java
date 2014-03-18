@@ -25,22 +25,22 @@ public class LabelDistribution extends AbstractDistribution implements Copyable 
     }
 
     /**
-     * @see dist.Distribution#probabilityOf(shared.Instance)
      */
+    @Override
     public double p(Instance i) {
         return dist.p(i.getLabel());
     }
 
     /**
-     * @see dist.Distribution#logLikelihood(shared.Instance)
      */
+    @Override
     public double logp(Instance i) {
         return dist.logp(i.getLabel());
     }
 
     /**
-     * @see dist.Distribution#generateRandom(shared.Instance)
      */
+    @Override
     public Instance sample(Instance i) {
         return dist.sample(i.getLabel());
     }
@@ -48,6 +48,7 @@ public class LabelDistribution extends AbstractDistribution implements Copyable 
     /**
      * @see dist.Distribution#mode(shared.Instance)
      */ 
+    @Override
     public Instance mode(Instance i) {
         return dist.mode(i.getLabel());
     }
@@ -55,6 +56,7 @@ public class LabelDistribution extends AbstractDistribution implements Copyable 
     /**
      * @see dist.Distribution#estimate(shared.DataSet)
      */
+    @Override
     public void estimate(DataSet observations) {
         dist.estimate(observations.getLabelDataSet());
     }
@@ -69,6 +71,7 @@ public class LabelDistribution extends AbstractDistribution implements Copyable 
     /**
      * @see shared.Copyable#copy()
      */
+    @Override
     public Copyable copy() {
         return new LabelDistribution((Distribution) ((Copyable) dist).copy());
     }

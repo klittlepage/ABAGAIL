@@ -1,7 +1,6 @@
 package opt.example;
 
 import dist.Distribution;
-
 import opt.ga.CrossoverFunction;
 import shared.Instance;
 
@@ -27,8 +26,8 @@ public class TravelingSalesmanCrossOver implements CrossoverFunction {
     }
 
     /**
-     * @see opt.ga.CrossOverFunction#mate(opt.OptimizationData, opt.OptimizationData)
      */
+    @Override
     public Instance mate(Instance a, Instance b) {
         int[] nexta = new int[a.size()];
         int[] nextb = new int[b.size()];
@@ -46,7 +45,7 @@ public class TravelingSalesmanCrossOver implements CrossoverFunction {
             int cur = child[i];
             int na = nexta[cur];
             int nb = nextb[cur];
-            int next = -1;
+            int next;
             if (visited[na] && !visited[nb]) {
                 next = nb;
             } else if (visited[nb] && !visited[na]) {

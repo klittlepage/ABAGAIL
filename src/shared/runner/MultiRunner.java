@@ -1,19 +1,19 @@
 package shared.runner;
 
-import java.io.File;
-
 import shared.tester.AccuracyTestMetric;
 import shared.tester.ConfusionMatrixTestMetric;
 import shared.writer.CSVWriter;
 import shared.writer.Writer;
 import util.TimeUtil;
 
+import java.io.File;
+
 /**
  * A runner for multiple tests/experiments.  This class takes in a Runner, an array of iteration values to use,
  * and an array of test/train splits to use
  * 
  * @author Jesse Rosalia <https://github.com/theJenix>
- * @date 2013-03-06
+ * Last edited: 2013-03-06
  */
 public class MultiRunner {
 
@@ -86,8 +86,7 @@ public class MultiRunner {
     /**
      * Set the output folder for results files.  If not set, this class
      * will not output any data to file.
-     * 
-     * @param outputFolder
+     *
      */
     public void setOutputFolder(File outputFolder) {
         this.outputFolder = outputFolder;

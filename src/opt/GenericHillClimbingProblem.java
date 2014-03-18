@@ -1,7 +1,7 @@
 package opt;
 
-import shared.Instance;
 import dist.Distribution;
+import shared.Instance;
 
 /**
  * A generic hill climbing problem
@@ -28,8 +28,8 @@ public class GenericHillClimbingProblem extends GenericOptimizationProblem imple
     }
 
     /**
-     * @see opt.HillClimbingProblem#neighbor(opt.OptimizationData)
      */
+    @Override
     public Instance neighbor(Instance d) {
         return neigh.neighbor(d);
     }
